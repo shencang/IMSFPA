@@ -15,7 +15,7 @@ public class Register  extends JFrame implements ActionListener {
     public   int LOCATION_Y=242;
     public String identL="领养人";
     public String identS="店员";
-    public static String identitiy ;
+    public static String identitiy=null ;
 
 
     JLabel jLabelUsername,jLabelIdentity,jLabelPassword,jLabelName,jLabelTel,jLabelEmail;

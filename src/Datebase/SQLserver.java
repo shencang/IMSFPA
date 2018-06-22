@@ -7,12 +7,10 @@ import Res.Values.GetString;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 import javax.swing.*;
+import java.awt.*;
 import java.sql.*;
 
 public class SQLserver {
-    Connection ct;
-    PreparedStatement ps;
-    ResultSet rs;
     String user,pwd;
     String rootID="roots",rootpassword="12345";
     Connection cons;
@@ -33,39 +31,40 @@ public class SQLserver {
 
     //注册用户的方法
     public void UserRegis(String username,String password,String name,String tel,String email){
-        System.out.println(username+" "+password+" "+name+" "+tel+" "+email+" ");
-        try {
 
-            if (name.length()==5){
+        PreparedStatement ps = null;
+        Connection conn = null;
+        String sqlS = "insert into PetShopStaff values(?,?,'','',?,?,?,'')";
+        String sqlA = "insert into Adopter      values(?,?,?,'','',?,?,'')";
+        try {
+             conn = DriverManager.getConnection(URL, rootID, rootpassword);
+            if (username.length()==5){
                 System.out.println(username+" "+password+" "+name+" "+tel+" "+email+" ");
-                ps = ct.prepareStatement("insert into PetShopStaff values(?,?,?,?,?,?,?,?)");
+                ps = conn.prepareStatement(sqlS);
                 ps.setString(1,username);
-                ps.setString(7,password);
-                ps.setString(2,name);
-                ps.setString(5,tel);
-                ps.setString(6,email);
-            }
-            if (name.length()>=6&&name.length()<=18){
-                System.out.println(username+" "+password+" "+name+" "+tel+" "+email+" ");
-                ps = ct.prepareStatement("insert into Adopter values(?,?,?,?,?,?,?,?)");
-                ps.setString(1,username);
-                ps.setString(7,password);
                 ps.setString(2,name);
                 ps.setString(3,tel);
-                ps.setString(6,email);
+                ps.setString(4,email);
+                ps.setString(5,password);
+                ps.execute();
+                JOptionPane.showMessageDialog(null, GetString.registerYes,GetString.TIP,JOptionPane.WARNING_MESSAGE);
+            }
+            if (username.length()>=6&&name.length()<=18){
+                System.out.println(username+" "+password+" "+name+" "+tel+" "+email+" ");
+                ps = conn.prepareStatement(sqlA);
+                ps.setString(1,username);
+                ps.setString(2,name);
+                ps.setString(3,tel);
+                ps.setString(4,email);
+                ps.setString(5,password);
+                ps.execute();
+                JOptionPane.showMessageDialog(null, GetString.registerYes,GetString.TIP,JOptionPane.WARNING_MESSAGE);
+                conn.close();
             }
             //执行
-            int i=ps.executeUpdate();
-            if(i==1) {
-                JOptionPane.showMessageDialog(null, GetString.registerYes,GetString.TIP,JOptionPane.WARNING_MESSAGE);
-
-            }else
-            {
-                JOptionPane.showMessageDialog(null, GetString.registerNo,GetString.TIP,JOptionPane.ERROR_MESSAGE);
-            }
-
         }catch (SQLException e){
             e.printStackTrace();
+            JOptionPane.showMessageDialog(null, GetString.registerNo,GetString.TIP,JOptionPane.ERROR_MESSAGE);
         }
 
 
@@ -90,29 +89,33 @@ public class SQLserver {
 
     //登录验证方法
     public Boolean SQLverify(String users,String password){
+        Connection conLogin=null;
+        PreparedStatement psLogin = null;
+        ResultSet rsLogin= null;
         try {
 
-            ct=DriverManager.getConnection(URL, rootID, rootpassword);
+            conLogin=DriverManager.getConnection(URL, rootID, rootpassword);
             if (users.length()==5){
-                ps=ct.prepareStatement("select * from PetShopStaff where PSSnum=? and PSSpassword=? ");
-                ps.setString(1,users);
-                ps.setString(2,password);
+                psLogin=conLogin.prepareStatement("select * from PetShopStaff where PSSnum=? and PSSpassword=? ");
+                psLogin.setString(1,users);
+                psLogin.setString(2,password);
             }
             if (users.length()>=6&&name.length()<=18){
 
-                ps=ct.prepareStatement("select * from Adopter where Anum=? and Apassword=? ");
-                ps.setString(1,users);
-                ps.setString(2,password);
+                psLogin=conLogin.prepareStatement("select * from Adopter where Anum=? and Apassword=? ");
+                psLogin.setString(1,users);
+                psLogin.setString(2,password);
             }
 
             // ResultSet结果集,可以把ResultSet理解成返回一张表行的结果集
-            rs =ps.executeQuery();
-            if(rs.next()){
-                user = rs.getString(1);
-                pwd = rs.getString(2);
+            rsLogin =psLogin.executeQuery();
+            if( rsLogin.next()){
+                user =  rsLogin.getString(1);
+                pwd =  rsLogin.getString(2);
                 JOptionPane.showMessageDialog(null,"登陆成功","尚未完工",JOptionPane.WARNING_MESSAGE);
                 System.out.println("成功获取到密码和用户名from数据库");
                 System.out.println(user + "\t" + pwd + "\t");
+                conLogin.close();
                 return  true;
 
 
@@ -135,24 +138,28 @@ public class SQLserver {
 
     //登录注册验证方法
     public void RegisterVerify(String name){
+        Connection conLoginR= null;
+        ResultSet reLoginR =null;
+        PreparedStatement psLoginR = null;
+
         try {
-            ct=DriverManager.getConnection(URL, rootID, rootpassword);
+            conLoginR=DriverManager.getConnection(URL, rootID, rootpassword);
             if (name.length()==5){
-                ps = ct.prepareStatement("select * from PetShopStaff where PSSnum=?");
+                psLoginR = conLoginR.prepareStatement("select * from PetShopStaff where PSSnum=?");
             }
             if (name.length()>=6&&name.length()<=18){
-                ps = ct.prepareStatement("select * from Adopter where Anum=?");
+                psLoginR = conLoginR.prepareStatement("select * from Adopter where Anum=?");
             }
-            ps.setString(1,name);
-            rs =ps.executeQuery();
-            if (rs.next()){
+            psLoginR.setString(1,name);
+            reLoginR =psLoginR.executeQuery();
+            if (reLoginR.next()){
                 JOptionPane.showMessageDialog(null,GetString.SQLusernameErr,GetString.TIP,JOptionPane.WARNING_MESSAGE);
             }
             else {
 
-                this.UserRegis(username,password,this.name,tel,email);
-
+                UserRegis(this.username,this.password,this.name,this.tel,this.email);
             }
+            conLoginR.close();
 
         }catch (SQLException E){
             E.printStackTrace();
