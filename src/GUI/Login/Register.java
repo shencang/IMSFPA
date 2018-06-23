@@ -22,6 +22,7 @@ public class Register  extends JFrame implements ActionListener {
     JTextField usernameTip,passwordTip,nameTip,telTip,emailTip;
     JButton backButton,trueButton;
     JComboBox<String> identityTip;
+    JLabel close_label;
 
     public Register(){
 
@@ -82,6 +83,48 @@ public class Register  extends JFrame implements ActionListener {
         JLabel background_north = new JLabel(image_north);
         background_north.setBounds(0, 0, 900, 140);
         panel_north.add(background_north);
+        close_label = new JLabel(new ImageIcon("src\\Res\\Img\\close_mini.png"));
+        close_label.setBounds(860, 15, 25, 25);
+        panel_north.add(close_label,0);
+        close_label.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                System.out.println("注册窗体退出");
+                regis.dispose();
+
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+
+                System.out.println("点击");
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                ImageIcon icon_close = new ImageIcon("src\\Res\\Img\\close.png");
+                close_label.setIcon(icon_close);
+                close_label.setToolTipText("关闭窗口");
+                System.out.println("显示");
+
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                ImageIcon icon_close = new ImageIcon("src\\Res\\Img\\close_mini.png");
+                close_label.setIcon(icon_close);
+                System.out.println("不显示");
+
+            }
+        });
         regis.add(panel_north,BorderLayout.NORTH);
 
         /**
