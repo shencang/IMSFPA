@@ -1,5 +1,6 @@
 package Datebase;
 
+import GUI.Adopter.AdopterMain;
 import GUI.Login.GeText;
 import GUI.Login.InitSysLogin;
 import GUI.Login.Register;
@@ -49,7 +50,7 @@ public class SQLserver {
                 ps.execute();
                 JOptionPane.showMessageDialog(null, GetString.registerYes,GetString.TIP,JOptionPane.WARNING_MESSAGE);
             }
-            if (username.length()>=6&&name.length()<=18){
+            if (username.length()>=6&&username.length()<=18){
                 System.out.println(username+" "+password+" "+name+" "+tel+" "+email+" ");
                 ps = conn.prepareStatement(sqlA);
                 ps.setString(1,username);
@@ -99,22 +100,26 @@ public class SQLserver {
                 psLogin=conLogin.prepareStatement("select * from PetShopStaff where PSSnum=? and PSSpassword=? ");
                 psLogin.setString(1,users);
                 psLogin.setString(2,password);
+                rsLogin =psLogin.executeQuery();
             }
-            if (users.length()>=6&&name.length()<=18){
+            if (users.length()>=6&&users.length()<=18){
 
                 psLogin=conLogin.prepareStatement("select * from Adopter where Anum=? and Apassword=? ");
                 psLogin.setString(1,users);
                 psLogin.setString(2,password);
+                rsLogin =psLogin.executeQuery();
             }
 
             // ResultSet结果集,可以把ResultSet理解成返回一张表行的结果集
-            rsLogin =psLogin.executeQuery();
+
             if( rsLogin.next()){
                 user =  rsLogin.getString(1);
                 pwd =  rsLogin.getString(2);
                 JOptionPane.showMessageDialog(null,"登陆成功","尚未完工",JOptionPane.WARNING_MESSAGE);
                 System.out.println("成功获取到密码和用户名from数据库");
                 System.out.println(user + "\t" + pwd + "\t");
+                AdopterMain.StartAM();
+
                 conLogin.close();
                 return  true;
 

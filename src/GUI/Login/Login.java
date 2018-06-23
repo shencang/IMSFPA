@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Login implements ActionListener{
+public class Login implements ActionListener {
 
 
     JFrame frame = new JFrame();
@@ -25,12 +25,10 @@ public class Login implements ActionListener{
 //        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 //        frame.pack();
 //        frame.setVisible(true);
-       //  initSysLogin =
-         InitSysLogin initSysLogin=new InitSysLogin();
-         initSysLogin.initLogin();
+        //  initSysLogin =
+        InitSysLogin initSysLogin = new InitSysLogin();
+        initSysLogin.initLogin();
     }
-
-
 
 
     private void createUIComponents() {
