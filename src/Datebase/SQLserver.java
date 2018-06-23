@@ -118,7 +118,8 @@ public class SQLserver {
                 JOptionPane.showMessageDialog(null,"登陆成功","尚未完工",JOptionPane.WARNING_MESSAGE);
                 System.out.println("成功获取到密码和用户名from数据库");
                 System.out.println(user + "\t" + pwd + "\t");
-                AdopterMain.StartAM();
+                AdopterMain adopterMain= new AdopterMain();
+                adopterMain.StartAM();
 
                 conLogin.close();
                 return  true;

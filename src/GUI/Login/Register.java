@@ -378,6 +378,14 @@ public class Register extends JFrame implements ActionListener {
             sqLserver.getUserRegis(usernameTip.getText(), passwordTip.getText(), nameTip.getText(), telTip.getText(), emailTip.getText());
             sqLserver.RegisterVerify(usernameTip.getText());
 
+            this.usernameTip.setText("");
+            this.passwordTip.setText("");
+            this.nameTip.setText("");
+            this.telTip.setText("");
+            this.emailTip.setText("");
+
+
+
         }
 
 
