@@ -115,11 +115,14 @@ public class SQLserver {
             if( rsLogin.next()){
                 user =  rsLogin.getString(1);
                 pwd =  rsLogin.getString(2);
-                JOptionPane.showMessageDialog(null,"登陆成功","尚未完工",JOptionPane.WARNING_MESSAGE);
+              //  JOptionPane.showMessageDialog(null,"登陆成功","尚未完工",JOptionPane.WARNING_MESSAGE);
+                if (users.length()>=6&&users.length()<=18){
+                    AdopterMain adopterMain =new AdopterMain();
+                    adopterMain.adopeterStart(users);
+                }
                 System.out.println("成功获取到密码和用户名from数据库");
                 System.out.println(user + "\t" + pwd + "\t");
-                AdopterMain adopterMain= new AdopterMain();
-                adopterMain.StartAM();
+
 
                 conLogin.close();
                 return  true;

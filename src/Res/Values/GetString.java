@@ -37,6 +37,15 @@ public class GetString {
     public static String SQLusernameErr = "用户名已经存在！";
     public static String registerNo = "注册失败";
     public static String registerYes = "注册成功";
+    public static String Time_mor   = "早上";
+    public static String Time_eve   = "晚上";
+    public static String Time_am   = "上午";
+    public static String Time_pm   = "下午";
+    public static String Time_aft   = "中午";
+    public static String Time_bd   = "凌晨";
+    public static String welcome   = "好，欢迎登录系统";
+
+
 
 
 }
