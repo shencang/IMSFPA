@@ -132,7 +132,7 @@ public class Register extends JFrame implements ActionListener {
          */
         JPanel panel_center = new JPanel();
         panel_center.setLayout(null);
-        panel_center.setPreferredSize(new Dimension(500, 0));
+        panel_center.setPreferredSize(new Dimension(770, 200));
         MyLineBorder myLineBorder = new MyLineBorder(new Color(192, 192, 192), 1, true);
 
         /**
@@ -242,7 +242,7 @@ public class Register extends JFrame implements ActionListener {
          */
         JPanel panel_west = new JPanel();
         panel_west.setLayout(null);
-        panel_west.setPreferredSize(new Dimension(130, 0));
+        panel_west.setPreferredSize(new Dimension(130, 200));
         //用户身份
         jLabelIdentity = new JLabel(GetString.pleaseSetIdentity);
         jLabelIdentity.setBounds(10, 10, 120, 30);
@@ -276,7 +276,7 @@ public class Register extends JFrame implements ActionListener {
          */
         JPanel panel_south = new JPanel();
         panel_south.setLayout(new FlowLayout());
-        panel_south.setPreferredSize(new Dimension(0, 50));
+        panel_south.setPreferredSize(new Dimension(900, 60));
         MyLineBorder myLineBorder1 = new MyLineBorder(new Color(192, 192, 192), 1, true);
 
         /**

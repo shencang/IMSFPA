@@ -26,7 +26,7 @@ public class InitSysLogin extends JFrame {
 
 
     //定义面板
-    InitSysLogin() {
+    public InitSysLogin() {
         /**
          * 实现拖拽窗口的功能
          */
@@ -81,7 +81,7 @@ public class InitSysLogin extends JFrame {
 
         JPanel panel_north = new JPanel();
         panel_north.setLayout(null);
-        panel_north.setPreferredSize(new Dimension(0, 140));
+        panel_north.setPreferredSize(new Dimension(900, 140));
 
         ImageIcon image_north = new ImageIcon("src\\Res\\Img\\back.png");
         JLabel background_north = new JLabel(image_north);
@@ -139,14 +139,14 @@ public class InitSysLogin extends JFrame {
          */
         JPanel panel_center = new JPanel();
         panel_center.setLayout(null);
-        panel_center.setPreferredSize(new Dimension(0, 180));
+        panel_center.setPreferredSize(new Dimension(570, 200));
         MyLineBorder myLineBorder = new MyLineBorder(new Color(192, 192, 192), 1, true);
 
         /**
          * 用户名框
          */
         username = new JTextField();
-        username.setBounds(150, 15, 375, 30);
+        username.setBounds(70, 25, 375, 30);
         username.setToolTipText(GetString.usernameTip);
         username.setBorder(myLineBorder);
         ActionListener usernametext = new GeText();
@@ -156,7 +156,7 @@ public class InitSysLogin extends JFrame {
          * 密码名框
          */
         password = new JPasswordField(JPasswordField.LEFT);
-        password.setBounds(150, 44, 375, 30);
+        password.setBounds(70, 54, 375, 30);
         password.setToolTipText(GetString.passwordTip);
         password.setBorder(myLineBorder);
         ActionListener passwordtext = new GeText();
@@ -164,10 +164,10 @@ public class InitSysLogin extends JFrame {
 
 
         JCheckBox rember_pwd = new JCheckBox("记住密码");
-        rember_pwd.setBounds(150, 80, 80, 20);
+        rember_pwd.setBounds(150, 90, 80, 20);
 
         JCheckBox login_auto = new JCheckBox("自动登录");
-        login_auto.setBounds(250, 80, 80, 20);
+        login_auto.setBounds(250, 90, 80, 20);
 
 
         panel_center.add(rember_pwd);
@@ -185,12 +185,12 @@ public class InitSysLogin extends JFrame {
          */
         JPanel panel_west = new JPanel();
         panel_west.setLayout(null);
-        panel_west.setPreferredSize(new Dimension(130, 0));
+        panel_west.setPreferredSize(new Dimension(200, 200));
 
         ImageIcon image_west = new ImageIcon("src\\Res\\Img\\HandImgage.png");
         JLabel background_west = new JLabel(image_west);
 
-        background_west.setBounds(10, 0, 120, 120);
+        background_west.setBounds(10, 10, 120, 120);
 
         panel_west.add(background_west);
         //JPanel panel_west=createPanel.CreateWestPanel();
@@ -201,7 +201,7 @@ public class InitSysLogin extends JFrame {
          */
         JPanel panel_south = new JPanel();
         panel_south.setLayout(null);
-        panel_south.setPreferredSize(new Dimension(0, 50));
+        panel_south.setPreferredSize(new Dimension(900, 60));
         MyLineBorder myLineBorder1 = new MyLineBorder(new Color(192, 192, 192), 1, true);
         /**
          * 登录按钮
@@ -256,11 +256,11 @@ public class InitSysLogin extends JFrame {
 
         JPanel pannel_east = new JPanel();
         pannel_east.setLayout(null);
-        pannel_east.setPreferredSize(new Dimension(100, 0));
+        pannel_east.setPreferredSize(new Dimension(130, 200));
 
         JLabel regeist = new JLabel("注册账号");
         regeist.setForeground(new Color(100, 149, 238));
-        regeist.setBounds(0, 13, 60, 30);
+        regeist.setBounds(0, 23, 60, 30);
         regeist.setFont(new Font("宋体", 0, 12));
         regeist.addMouseListener(new MouseListener() {
             @Override
@@ -299,7 +299,7 @@ public class InitSysLogin extends JFrame {
 
         JLabel regetpwd = new JLabel("找回密码");
         regetpwd.setForeground(new Color(100, 149, 238));
-        regetpwd.setBounds(0, 43, 60, 30);
+        regetpwd.setBounds(0, 53, 60, 30);
         regetpwd.setFont(new Font("宋体", 0, 12));
         regetpwd.addMouseListener(new MouseListener() {
             @Override

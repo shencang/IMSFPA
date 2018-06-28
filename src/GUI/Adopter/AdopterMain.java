@@ -1,5 +1,6 @@
 package GUI.Adopter;
 
+import GUI.Login.InitSysLogin;
 import GUI.Login.MyLineBorder;
 import GUI.Login.Register;
 import Other.GetTime;
@@ -18,7 +19,7 @@ public class AdopterMain extends JFrame implements ActionListener {
     public int LOCATION_Y = 200;
 
     JLabel jLabelwelcome,jLabelshowSystem,jLabelClose,jLabelIdentity;
-    JButton jButtonpeted,jButtonpet,jButtoninform,jButtonmodinfo,jButtonmodpet,jButtonexit,jButtonloginout;
+    JButton jButtonpeted,jButtonpet,jButtoninform,jButtonmodinfo,jButtonmodpet,jButtonexit,jButtonloginout,jButtondele;
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -134,6 +135,85 @@ public class AdopterMain extends JFrame implements ActionListener {
          * 中部面板
          */
 
+        JPanel panel_center = new JPanel();
+        panel_center.setLayout(null);
+        panel_center.setPreferredSize(new Dimension(400,300));
+        MyLineBorder myLineBorder = new MyLineBorder(new Color(192, 192, 192), 1, true);
+        ImageIcon imageInfo = new ImageIcon("src\\Res\\Img\\gaiinformbtn.png");
+        ImageIcon imageAp = new ImageIcon("src\\Res\\Img\\newapbtn.png");
+        /**
+         * 修改个人信息按钮
+         */
+
+
+        jButtonmodinfo= new JButton(imageInfo);
+        jButtonmodinfo.setBounds(20,20,imageInfo.getIconWidth()-10,imageInfo.getIconHeight()-10);
+        jButtonmodinfo.setBorder(myLineBorder);
+        jButtonmodinfo.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
+
+        /**
+         * 领养申请按钮
+         */
+        jButtonmodpet = new JButton(imageAp);
+        jButtonmodpet.setBounds(20,70,imageAp.getIconWidth()-10,imageAp.getIconHeight()-10);
+        jButtonmodpet.setBorder(myLineBorder);
+        jButtonmodpet.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
+        panel_center.add(jButtonmodinfo);
+        panel_center.add(jButtonmodpet);
+
+        adopterMain.add(panel_center,BorderLayout.CENTER);
+
+
 
         /**
          * 西部面板
@@ -141,7 +221,7 @@ public class AdopterMain extends JFrame implements ActionListener {
 
         JPanel panel_west = new JPanel();
         panel_west.setLayout(null);
-        panel_west.setPreferredSize( new Dimension(600,300));
+        panel_west.setPreferredSize( new Dimension(400,300));
         MyLineBorder myLineBorder1 = new MyLineBorder(new Color(192, 192, 192), 1, true);
         ImageIcon chaimage1 = new ImageIcon("src\\Res\\Img\\chapetbtn1.png");
         ImageIcon chaimage2 = new ImageIcon("src\\Res\\Img\\chapetbtn2.png");
@@ -183,7 +263,6 @@ public class AdopterMain extends JFrame implements ActionListener {
         /**
          * 查询未领养宠物按钮
          */
-
 
         jButtonpet = new JButton(chaimage2);
         jButtonpet.setBounds(20,70,chaimage1.getIconWidth()-10,chaimage1.getIconHeight()-10);
@@ -253,6 +332,53 @@ public class AdopterMain extends JFrame implements ActionListener {
         panel_west.add(jButtonpet);
        adopterMain.add(panel_west,BorderLayout.WEST);
 
+        /**
+         * 东部面板
+         */
+        JPanel panel_east = new JPanel();
+        panel_east.setLayout(null);
+        panel_east.setPreferredSize(new Dimension(400, 300));
+        MyLineBorder  myLineBorder3 = new MyLineBorder(new Color(192, 192, 192), 1, true);
+
+        ImageIcon imageDele = new ImageIcon("src\\Res\\Img\\deleapbtn.png");
+
+        /**
+         * 删除领养申请按钮
+         */
+        jButtondele = new JButton(imageDele);
+        jButtondele.setBounds(20, 20, imageDele.getIconWidth() - 10, imageDele.getIconHeight() - 10);
+        jButtondele.setBorder(myLineBorder3);
+        jButtondele.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
+        panel_east.add(jButtondele);
+        adopterMain.add(panel_east,BorderLayout.EAST);
+
+
+
 
         /**
          * 南部面板
@@ -273,6 +399,9 @@ public class AdopterMain extends JFrame implements ActionListener {
         jButtonloginout.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                InitSysLogin initSysLogin= new InitSysLogin();
+                initSysLogin.initLogin();
+                adopterMain.dispose();
 
             }
 
@@ -307,6 +436,7 @@ public class AdopterMain extends JFrame implements ActionListener {
         jButtonexit.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                System.exit(0);
 
             }
 
