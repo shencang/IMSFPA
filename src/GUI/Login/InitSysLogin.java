@@ -21,6 +21,9 @@ public class InitSysLogin extends JFrame {
     static JTextField password;
     boolean flag = false;
     JLabel close_label;
+    String usernames = "\\w{5,10}";//用户名必须是5-18
+    String passwords = "\\w{6}";//"密码必须为6位字母或者数字";
+
 
     //定义面板
     InitSysLogin() {
@@ -144,6 +147,7 @@ public class InitSysLogin extends JFrame {
          */
         username = new JTextField();
         username.setBounds(150, 15, 375, 30);
+        username.setToolTipText(GetString.usernameTip);
         username.setBorder(myLineBorder);
         ActionListener usernametext = new GeText();
         username.addActionListener(usernametext);
@@ -153,6 +157,7 @@ public class InitSysLogin extends JFrame {
          */
         password = new JPasswordField(JPasswordField.LEFT);
         password.setBounds(150, 44, 375, 30);
+        password.setToolTipText(GetString.passwordTip);
         password.setBorder(myLineBorder);
         ActionListener passwordtext = new GeText();
         password.addActionListener(passwordtext);
@@ -208,6 +213,18 @@ public class InitSysLogin extends JFrame {
         btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                boolean userFlag = username.getText().matches(usernames);
+                boolean passwordFlag = password.getText().matches(passwords);
+
+                if (userFlag == false) {
+
+                    JOptionPane.showMessageDialog(null, GetString.usernameErr, GetString.TIP, JOptionPane.WARNING_MESSAGE);
+                    username.setText("");
+                } else if (passwordFlag == false) {
+                    JOptionPane.showMessageDialog(null, GetString.passwordErr, GetString.TIP, JOptionPane.WARNING_MESSAGE);
+                    password.setText("");
+                }
+                else {
                 SQLserver sqLserver = new SQLserver();
                 sqLserver.connectSQL();
                 flag = sqLserver.SQLverify(username.getText(), password.getText());
@@ -223,6 +240,7 @@ public class InitSysLogin extends JFrame {
                     System.out.println("NO");
                 }
 
+            }
             }
         });
         panel_south.add(btn);

@@ -13,6 +13,7 @@ public class GetString {
     public static String pleaseSetIdentity = "请输入注册身份:";
     public static String usernameTip_A = "用户名必须为6-18位字母或者数字";
     public static String usernameTip_S = "用户名必须为5位字母或者数字";
+    public static String usernameTip = "用户名必须为5-18位字母或者数字";
     public static String trueIdentity = "请先填写用户身份！";
     public static String passwordTip = "密码必须为6位字母或者数字";
     public static String nameTip = "姓名必须2-5位汉字";
@@ -26,6 +27,7 @@ public class GetString {
     public static String identity_A = "领养人";
     public static String identity_S = "店员";
     public static String identity_M = "请选择身份";
+    public static String usernameErr = "输入错误！用户名必须为5-18位字母或者数字";
     public static String usernameErr_A = "输入错误！用户名必须为6-18位字母或者数字";
     public static String usernameErr_S = "输入错误！用户名必须为5位字母或者数字";
     public static String trueIdentityErr = "请先填写用户身份！";
@@ -44,6 +46,7 @@ public class GetString {
     public static String Time_aft   = "中午";
     public static String Time_bd   = "凌晨";
     public static String welcome   = "好，欢迎登录系统";
+    public static String welIdentity = "当前登录身份：领养人";
 
 
 

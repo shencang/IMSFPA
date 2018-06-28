@@ -1,5 +1,6 @@
 package GUI.Adopter;
 
+import GUI.Login.MyLineBorder;
 import GUI.Login.Register;
 import Other.GetTime;
 import Res.Values.GetString;
@@ -16,7 +17,8 @@ public class AdopterMain extends JFrame implements ActionListener {
     public int LOCATION_X = 200;
     public int LOCATION_Y = 200;
 
-    JLabel jLabelwelcome,jLabelshowSystem,jLabelClose;
+    JLabel jLabelwelcome,jLabelshowSystem,jLabelClose,jLabelIdentity;
+    JButton jButtonpeted,jButtonpet,jButtoninform,jButtonmodinfo,jButtonmodpet,jButtonexit,jButtonloginout;
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -70,6 +72,10 @@ public class AdopterMain extends JFrame implements ActionListener {
         jLabelwelcome.setBounds(10,10,320,50);
         jLabelwelcome.setFont(new Font("黑体", 0, 30));
 
+        jLabelIdentity = new JLabel(GetString.welIdentity);
+        jLabelIdentity.setBounds(15,50,170,30);
+        jLabelIdentity.setFont(new Font("微软雅黑",0,13));
+
         ImageIcon image_north = new ImageIcon("Src\\Res\\Img\\adopter_bg.png");
         JLabel background_north = new JLabel(image_north);
         background_north.setBounds(0, 0, 1200, 200);
@@ -119,14 +125,219 @@ public class AdopterMain extends JFrame implements ActionListener {
 
 
         panel_north.add(background_north);
+        panel_north.add(jLabelIdentity,0);
         panel_north.add(jLabelClose, 0);
         panel_north.add(jLabelwelcome,0);
         adopterMain.add(panel_north,BorderLayout.NORTH);
 
+        /**
+         * 中部面板
+         */
+
+
+        /**
+         * 西部面板
+         */
+
+        JPanel panel_west = new JPanel();
+        panel_west.setLayout(null);
+        panel_west.setPreferredSize( new Dimension(600,300));
+        MyLineBorder myLineBorder1 = new MyLineBorder(new Color(192, 192, 192), 1, true);
+        ImageIcon chaimage1 = new ImageIcon("src\\Res\\Img\\chapetbtn1.png");
+        ImageIcon chaimage2 = new ImageIcon("src\\Res\\Img\\chapetbtn2.png");
+        ImageIcon chaimage3 = new ImageIcon("src\\Res\\Img\\chainformbtn.png");
+
+        /**
+         * 查询已领养按钮
+         */
+        jButtonpeted = new JButton(chaimage1);
+        jButtonpeted.setBounds(20,20,chaimage1.getIconWidth()-10,chaimage1.getIconHeight()-10);
+        jButtonpeted.setBorder(myLineBorder1);
+        jButtonpeted.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
+
+        /**
+         * 查询未领养宠物按钮
+         */
+
+
+        jButtonpet = new JButton(chaimage2);
+        jButtonpet.setBounds(20,70,chaimage1.getIconWidth()-10,chaimage1.getIconHeight()-10);
+        jButtonpet.setBorder(myLineBorder1);
+        jButtonpet.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
+
+        /**
+         * 查询个人信息按钮
+         */
+        jButtoninform = new JButton(chaimage3);
+        jButtoninform.setBounds(20,120,chaimage1.getIconWidth()-10,chaimage1.getIconHeight()-10);
+        jButtoninform.setBorder(myLineBorder1);
+        jButtoninform.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
+
+        panel_west.add(jButtoninform);
+        panel_west.add(jButtonpeted);
+        panel_west.add(jButtonpet);
+       adopterMain.add(panel_west,BorderLayout.WEST);
+
+
+        /**
+         * 南部面板
+         */
+
+        JPanel panel_south = new JPanel();
+        panel_south.setLayout(null);
+        panel_south.setPreferredSize(new Dimension(1200,100));
+        MyLineBorder myLineBorder2 = new MyLineBorder(new Color(192, 192, 192), 1, true);
+
+        /**
+         * 注销按钮
+         */
+        ImageIcon imageout = new ImageIcon("src\\Res\\Img\\loginoutbtn.png");
+        jButtonloginout = new JButton(imageout);
+        jButtonloginout.setBounds(450,60,imageout.getIconWidth()-10,imageout.getIconHeight()-10);
+        jButtonloginout.setBorder(myLineBorder2);
+        jButtonloginout.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
+
+        /**
+         * 退出按钮
+         */
+        ImageIcon imageexit = new ImageIcon("src\\Res\\Img\\exitbtn.png");
+        jButtonexit = new JButton(imageexit);
+        jButtonexit.setBounds(830,60,imageout.getIconWidth()-10,imageout.getIconHeight()-10);
+        jButtonexit.setBorder(myLineBorder2);
+        jButtonexit.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
 
 
 
 
+        panel_south.add(jButtonloginout);
+        panel_south.add(jButtonexit);
+
+        adopterMain.add(panel_south,BorderLayout.SOUTH);
 
         adopterMain.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         adopterMain.setVisible(true);

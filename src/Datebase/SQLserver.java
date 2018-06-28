@@ -110,6 +110,7 @@ public class SQLserver {
                 rsLogin =psLogin.executeQuery();
             }
 
+
             // ResultSet结果集,可以把ResultSet理解成返回一张表行的结果集
 
             if( rsLogin.next()){
@@ -123,10 +124,8 @@ public class SQLserver {
                 System.out.println("成功获取到密码和用户名from数据库");
                 System.out.println(user + "\t" + pwd + "\t");
 
-
                 conLogin.close();
                 return  true;
-
 
             }
             else {
