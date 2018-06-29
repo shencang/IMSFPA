@@ -209,7 +209,7 @@ public class InitSysLogin extends JFrame {
         ImageIcon image = new ImageIcon("src\\Res\\Img\\loginbutton.png");
         JButton btn = new JButton(image);
         btn.setBounds(140, 0, image.getIconWidth() - 10, image.getIconHeight() - 10);
-        btn.setBorder(myLineBorder1);
+        //btn.setBorder(myLineBorder1);
         btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

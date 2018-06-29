@@ -36,6 +36,9 @@ public class GetString {
     public static String nameErr = "输入错误！姓名必须2-5位汉字";
     public static String telErr = "输入错误！请输入15位以下字符";
     public static String emailErr = "输入错误！请输入15位以下字符";
+    public static String adressErr = "输入错误！请输入15位以下中文";
+    public static String remarkErr = "输入错误！请输入50位以下中文";
+    public static String sexErr = "输入错误！请输入男或者女";
     public static String TIP = "提示信息";
     public static String SQLusernameErr = "用户名已经存在！";
     public static String registerNo = "注册失败";
@@ -60,6 +63,13 @@ public class GetString {
     public static String Page = "宠物年龄";
     public static String Psex = "宠物性别";
     public static String Premarks = "备注";
+    public static String Atel="联系电话";
+    public static String Asex ="性别";
+    public static String Aadress ="通讯住址";
+    public static String Aemail ="电子邮件";
+    public static String Aremarks ="备注";
+    public static String updateTips ="请在下方添加要修改信息：";
+
 
 
 

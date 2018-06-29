@@ -150,10 +150,12 @@ public class AdopterMain extends JFrame implements ActionListener {
 
         jButtonmodinfo= new JButton(imageInfo);
         jButtonmodinfo.setBounds(20,20,imageInfo.getIconWidth()-10,imageInfo.getIconHeight()-10);
-        jButtonmodinfo.setBorder(myLineBorder);
+       // jButtonmodinfo.setBorder(myLineBorder);
         jButtonmodinfo.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                AdopterInfoUpdate adopterInfoUpdate = new AdopterInfoUpdate();
+                adopterInfoUpdate.start(username);
 
             }
 
@@ -183,7 +185,7 @@ public class AdopterMain extends JFrame implements ActionListener {
          */
         jButtonmodpet = new JButton(imageAp);
         jButtonmodpet.setBounds(20,70,imageAp.getIconWidth()-10,imageAp.getIconHeight()-10);
-        jButtonmodpet.setBorder(myLineBorder);
+       // jButtonmodpet.setBorder(myLineBorder);
         jButtonmodpet.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -234,7 +236,7 @@ public class AdopterMain extends JFrame implements ActionListener {
          */
         jButtonpeted = new JButton(chaimage1);
         jButtonpeted.setBounds(20,20,chaimage1.getIconWidth()-10,chaimage1.getIconHeight()-10);
-        jButtonpeted.setBorder(myLineBorder1);
+      //  jButtonpeted.setBorder(myLineBorder1);
         jButtonpeted.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -270,7 +272,7 @@ public class AdopterMain extends JFrame implements ActionListener {
 
         jButtonpet = new JButton(chaimage2);
         jButtonpet.setBounds(20,70,chaimage1.getIconWidth()-10,chaimage1.getIconHeight()-10);
-        jButtonpet.setBorder(myLineBorder1);
+       // jButtonpet.setBorder(myLineBorder1);
         jButtonpet.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -305,10 +307,12 @@ public class AdopterMain extends JFrame implements ActionListener {
          */
         jButtoninform = new JButton(chaimage3);
         jButtoninform.setBounds(20,120,chaimage1.getIconWidth()-10,chaimage1.getIconHeight()-10);
-        jButtoninform.setBorder(myLineBorder1);
+       // jButtoninform.setBorder(myLineBorder1);
         jButtoninform.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                AdopterInfo adopterInfo = new AdopterInfo();
+                adopterInfo.start(username);
 
             }
 
@@ -353,7 +357,7 @@ public class AdopterMain extends JFrame implements ActionListener {
          */
         jButtondele = new JButton(imageDele);
         jButtondele.setBounds(20, 20, imageDele.getIconWidth() - 10, imageDele.getIconHeight() - 10);
-        jButtondele.setBorder(myLineBorder3);
+      //  jButtondele.setBorder(myLineBorder3);
         jButtondele.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -401,7 +405,7 @@ public class AdopterMain extends JFrame implements ActionListener {
         ImageIcon imageout = new ImageIcon("src\\Res\\Img\\loginoutbtn.png");
         jButtonloginout = new JButton(imageout);
         jButtonloginout.setBounds(440,60,imageout.getIconWidth()-10,imageout.getIconHeight()-10);
-        jButtonloginout.setBorder(myLineBorder2);
+      //  jButtonloginout.setBorder(myLineBorder2);
         jButtonloginout.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -438,7 +442,7 @@ public class AdopterMain extends JFrame implements ActionListener {
         ImageIcon imageexit = new ImageIcon("src\\Res\\Img\\exitbtn.png");
         jButtonexit = new JButton(imageexit);
         jButtonexit.setBounds(820,60,imageout.getIconWidth()-10,imageout.getIconHeight()-10);
-        jButtonexit.setBorder(myLineBorder2);
+      //  jButtonexit.setBorder(myLineBorder2);
         jButtonexit.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {

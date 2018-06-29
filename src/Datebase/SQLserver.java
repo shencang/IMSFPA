@@ -262,6 +262,82 @@ public class SQLserver {
         return date;
     }
 
+    public static Object[][] findAdoInfo(String name){
+        Object[][]  date=null;
+        Connection conLoginAP= null;
+        ResultSet reLoginAP =null;
+        PreparedStatement psLoginAP = null;
+        try {
+            // 获得连接
+            conLoginAP = DriverManager.getConnection(URL, rootID, rootpassword);
+            // 建立查询条件
+            String sql = "select Anum,Aname,Atel,Asex,Aadress,Aemail,Aremarks from Adopter where Anum = ? \n";
+            psLoginAP = conLoginAP.prepareStatement(sql);
+            psLoginAP.setString(1,name);
+            // 执行查询
+            reLoginAP = psLoginAP.executeQuery();
+            // 计算有多少条记录
+            int count = 0;
+            while (reLoginAP.next()) {
+                count++;
+            }
+            System.out.println(count);
+            reLoginAP = psLoginAP.executeQuery();
+            // 将查询获得的记录数据，转换成适合生成JTable的数据形式
+            Object[][] info = new Object[count][7];
+            count = 0;
+            while (reLoginAP.next()) {
+                info[count][0] = reLoginAP.getString("Anum");
+                info[count][1] = reLoginAP.getString("Aname");
+                info[count][2] = reLoginAP.getString("Atel");
+                info[count][3] = reLoginAP.getString("Asex");
+                info[count][4] = reLoginAP.getString("Aadress");
+                info[count][5] = reLoginAP.getString("Aemail");
+                info[count][6] = reLoginAP.getString("Aremarks");
+                count++;
+            }
+            date = info;
+
+        }
+        catch(SQLException sqle){
+            JOptionPane.showMessageDialog(null,"数据操作错误","错误",JOptionPane.ERROR_MESSAGE);
+        }
+        return date;
+    }
+
+    public static String[] getAdoInfo(String name){
+       String[] data=new String[7];
+        Connection conLoginAP= null;
+        ResultSet reLoginAP =null;
+        PreparedStatement psLoginAP = null;
+        try {
+            // 获得连接
+            conLoginAP = DriverManager.getConnection(URL, rootID, rootpassword);
+            // 建立查询条件
+            String sql = "select Anum,Aname,Atel,Asex,Aadress,Aemail,Aremarks from Adopter where Anum = ? \n";
+            psLoginAP = conLoginAP.prepareStatement(sql);
+            psLoginAP.setString(1,name);
+            // 执行查询
+            reLoginAP = psLoginAP.executeQuery();
+            while (reLoginAP.next()) {
+                data[0] = reLoginAP.getString("Anum");
+                data[1] = reLoginAP.getString("Aname");
+                data[2] = reLoginAP.getString("Atel");
+                data[3] = reLoginAP.getString("Asex");
+                data[4] = reLoginAP.getString("Aadress");
+                data[5] = reLoginAP.getString("Aemail");
+                data[6] = reLoginAP.getString("Aremarks");
+            }
+
+
+
+        }
+        catch(SQLException sqle){
+            JOptionPane.showMessageDialog(null,"数据操作错误","错误",JOptionPane.ERROR_MESSAGE);
+        }
+        return  data;
+    }
+
 
     public static void updatePet(){
         Connection con = null;
@@ -272,6 +348,28 @@ public class SQLserver {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.executeUpdate();
             System.out.println("领养关系已更新");
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void updateAdopter(String name,String text, String text1, String text2, String text3, String text4, String text5) {
+
+        Connection cons = null;
+        ResultSet rs;
+        try {
+            cons = DriverManager.getConnection(URL, rootID, rootpassword);
+            String sql = "update Adopter set Aname=?,Atel=?,Asex=?,Aadress=?,Aemail=?,Aremarks=? where Anum=?";
+            PreparedStatement ps = cons.prepareStatement(sql);
+            ps.setString(1,text);
+            ps.setString(2,text1);
+            ps.setString(3,text2);
+            ps.setString(4,text3);
+            ps.setString(5,text4);
+            ps.setString(6,text5);
+            ps.setString(7,name);
+            ps.executeUpdate();
+            System.out.println("个人已更新");
         }catch (SQLException e){
             e.printStackTrace();
         }

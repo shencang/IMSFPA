@@ -2,7 +2,6 @@ package GUI.Adopter;
 
 import Datebase.SQLserver;
 import GUI.Login.MyLineBorder;
-import GUI.Login.Register;
 import Res.Values.GetString;
 
 import javax.swing.*;
@@ -13,7 +12,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class FindPet extends JFrame implements ActionListener {
+public class AdopterInfo extends JFrame implements ActionListener {
+
 
     public int WINDOW_WIDTH = 900;
     public int WINDOW_HEIGHT = 700;
@@ -27,7 +27,7 @@ public class FindPet extends JFrame implements ActionListener {
 
 
 
-    public FindPet(){
+    public AdopterInfo(){
 
 
 
@@ -39,7 +39,7 @@ public class FindPet extends JFrame implements ActionListener {
             }
 
             public void mouseClicked(MouseEvent e) {
-                FindPet.this.setExtendedState(JFrame.ICONIFIED);
+                AdopterInfo.this.setExtendedState(JFrame.ICONIFIED);
             }
         });
 
@@ -50,7 +50,7 @@ public class FindPet extends JFrame implements ActionListener {
                 int xNew = xOnScreen - LOCATION_X;
                 int yNew = yOnScreen - LOCATION_Y;
                 System.out.println("xx=" + xNew + "yy=" + yNew);
-                FindPet.this.setLocation(xNew, yNew);  //设置拖拽后，窗口的位置
+                AdopterInfo.this.setLocation(xNew, yNew);  //设置拖拽后，窗口的位置
                 System.out.println("查询框体正在移动");
 
             }
@@ -64,9 +64,9 @@ public class FindPet extends JFrame implements ActionListener {
 
 
 
-    public  void  start(){
+    public  void  start(String username){
 
-        FindPet find = new FindPet();
+        AdopterInfo find = new AdopterInfo();
         find.setTitle(GetString.messageTitle);
         find.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         find.setLocation(LOCATION_X, LOCATION_Y);
@@ -87,9 +87,9 @@ public class FindPet extends JFrame implements ActionListener {
 
 
         // 定义表头
-        String[] title = {GetString.Pnum,GetString.Pname,GetString.Ptype,GetString.Pvarieties,GetString.Pstate,GetString.PregistrationTime,GetString.Page,GetString.Psex,GetString.Premarks};
+        String[] title = {GetString.Anum,GetString.Aname,GetString.Atel,GetString.Asex,GetString.Aadress,GetString.Aemail,GetString.Aremarks};
         // 创建JTable
-        jTablePet = new JTable(SQLserver.findPno(),title);
+        jTablePet = new JTable(SQLserver.findAdoInfo(username),title);
         jTableHeader = jTablePet.getTableHeader();
         jTableHeader.setBounds(0,0,900,30);
         jTablePet.setBounds(0,30,900,656);
@@ -112,10 +112,9 @@ public class FindPet extends JFrame implements ActionListener {
         JPanel panel_south = new JPanel();
         panel_south.setLayout(null);
         panel_south.setPreferredSize(new Dimension(900,44));
-     //   MyLineBorder myLineBorder2 = new MyLineBorder(new Color(1, 11, 11), 1, true);
+        MyLineBorder myLineBorder2 = new MyLineBorder(new Color(192, 192, 192), 1, true);
         ImageIcon image2 = new ImageIcon("src\\Res\\Img\\true&backbtn.png");
         jButtontrueAndBack = new JButton(image2);
-
         jButtontrueAndBack.setBounds((WINDOW_WIDTH/2-image2.getIconWidth()/2),0,image2.getIconWidth()-10,image2.getIconHeight()-10);
         jButtontrueAndBack.addActionListener(new ActionListener() {
             @Override

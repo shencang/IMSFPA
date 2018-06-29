@@ -306,7 +306,7 @@ public class Register extends JFrame implements ActionListener {
         backButton = new JButton(image2);
         backButton.setToolTipText(GetString.backButtonTip);
         backButton.setBounds(220, 0, image.getIconWidth() - 10, image.getIconHeight() - 10);
-        backButton.setBorder(myLineBorder1);
+      //  backButton.setBorder(myLineBorder1);
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
