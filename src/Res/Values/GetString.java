@@ -5,6 +5,7 @@ public class GetString {
     public static String loginTitle = "登录";
     public static String registerTitle = "注册";
     public static String adopterTitle = "领养人系统";
+    public static String messageTitle = "信息处理与查询窗口";
     public static String pleaseSetUsername = "请输入用户名：";
     public static String pleaseSetPassword = "请输入密码";
     public static String pleaseSetTel = "请输入电话号码：";
@@ -46,7 +47,21 @@ public class GetString {
     public static String Time_aft   = "中午";
     public static String Time_bd   = "凌晨";
     public static String welcome   = "好，欢迎登录系统";
-    public static String welIdentity = "当前登录身份：领养人";
+    public static String welIdentity = "当前登录身份：领养人   |   用户名：";
+    public static String Anum = "领养人编号";
+    public static String Aname = "领养人姓名";
+    public static String Pnum = "宠物编号";
+    public static String Pname = "宠物名：";
+    public static String ARDate = "领养日期";
+    public static String Ptype = "宠物类型";
+    public static String Pvarieties = "宠物品种";
+    public static String Pstate = "领养状态";
+    public static String PregistrationTime = "出生日期";
+    public static String Page = "宠物年龄";
+    public static String Psex = "宠物性别";
+    public static String Premarks = "备注";
+
+
 
 
 

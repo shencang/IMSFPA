@@ -1,5 +1,6 @@
 package GUI.Adopter;
 
+import Datebase.SQLserver;
 import GUI.Login.InitSysLogin;
 import GUI.Login.MyLineBorder;
 import GUI.Login.Register;
@@ -9,6 +10,7 @@ import Res.Values.GetString;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.Connection;
 import java.util.Calendar;
 
 public class AdopterMain extends JFrame implements ActionListener {
@@ -22,9 +24,9 @@ public class AdopterMain extends JFrame implements ActionListener {
     JButton jButtonpeted,jButtonpet,jButtoninform,jButtonmodinfo,jButtonmodpet,jButtonexit,jButtonloginout,jButtondele;
     @Override
     public void actionPerformed(ActionEvent e) {
-
     }
     public AdopterMain(){
+        SQLserver.updatePet();
 
         this.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
@@ -73,8 +75,8 @@ public class AdopterMain extends JFrame implements ActionListener {
         jLabelwelcome.setBounds(10,10,320,50);
         jLabelwelcome.setFont(new Font("黑体", 0, 30));
 
-        jLabelIdentity = new JLabel(GetString.welIdentity);
-        jLabelIdentity.setBounds(15,50,170,30);
+        jLabelIdentity = new JLabel(GetString.welIdentity+username);
+        jLabelIdentity.setBounds(15,50,320,40);
         jLabelIdentity.setFont(new Font("微软雅黑",0,13));
 
         ImageIcon image_north = new ImageIcon("Src\\Res\\Img\\adopter_bg.png");
@@ -236,6 +238,8 @@ public class AdopterMain extends JFrame implements ActionListener {
         jButtonpeted.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                FindPeted findPeted = new FindPeted();
+                findPeted.start(username);
 
             }
 
@@ -270,6 +274,8 @@ public class AdopterMain extends JFrame implements ActionListener {
         jButtonpet.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                FindPet findPet = new FindPet();
+                findPet.start();
 
             }
 
@@ -394,7 +400,7 @@ public class AdopterMain extends JFrame implements ActionListener {
          */
         ImageIcon imageout = new ImageIcon("src\\Res\\Img\\loginoutbtn.png");
         jButtonloginout = new JButton(imageout);
-        jButtonloginout.setBounds(450,60,imageout.getIconWidth()-10,imageout.getIconHeight()-10);
+        jButtonloginout.setBounds(440,60,imageout.getIconWidth()-10,imageout.getIconHeight()-10);
         jButtonloginout.setBorder(myLineBorder2);
         jButtonloginout.addMouseListener(new MouseListener() {
             @Override
@@ -431,7 +437,7 @@ public class AdopterMain extends JFrame implements ActionListener {
          */
         ImageIcon imageexit = new ImageIcon("src\\Res\\Img\\exitbtn.png");
         jButtonexit = new JButton(imageexit);
-        jButtonexit.setBounds(830,60,imageout.getIconWidth()-10,imageout.getIconHeight()-10);
+        jButtonexit.setBounds(820,60,imageout.getIconWidth()-10,imageout.getIconHeight()-10);
         jButtonexit.setBorder(myLineBorder2);
         jButtonexit.addMouseListener(new MouseListener() {
             @Override

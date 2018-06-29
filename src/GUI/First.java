@@ -5,6 +5,8 @@ import Res.Values.GetString;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class First extends JFrame {
 
@@ -35,6 +37,12 @@ public class First extends JFrame {
         buttonPanel.add(b);
         this.add(buttonPanel);
         b.addActionListener(new Login());
+        b.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setLogo.dispose();
+            }
+        });
 
         setLogo.add(b);
         setLogo.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -68,7 +76,7 @@ public class First extends JFrame {
         JButton b = new JButton("启动");
         b.setBounds(120, 850, 350, 80);
         f.add(b);
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         //启动
         f.setVisible(true);

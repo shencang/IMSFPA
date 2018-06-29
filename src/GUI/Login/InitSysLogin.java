@@ -21,7 +21,7 @@ public class InitSysLogin extends JFrame {
     static JTextField password;
     boolean flag = false;
     JLabel close_label;
-    String usernames = "\\w{5,10}";//用户名必须是5-18
+    String usernames = "\\w{5,18}";//用户名必须是5-18
     String passwords = "\\w{6}";//"密码必须为6位字母或者数字";
 
 
