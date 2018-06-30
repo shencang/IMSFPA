@@ -290,7 +290,13 @@ public class Register extends JFrame implements ActionListener {
         trueButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                registerNew();
+               if (identityTip.getSelectedIndex() == 0){
+                   JOptionPane.showMessageDialog(null, GetString.tipRe, GetString.TIP, JOptionPane.ERROR_MESSAGE);
+
+               }else {
+                   registerNew();
+               }
+
 
 
             }
@@ -305,8 +311,8 @@ public class Register extends JFrame implements ActionListener {
         ImageIcon image2 = new ImageIcon("src\\Res\\Img\\backBtn.png");
         backButton = new JButton(image2);
         backButton.setToolTipText(GetString.backButtonTip);
-        backButton.setBounds(220, 0, image.getIconWidth() - 10, image.getIconHeight() - 10);
-      //  backButton.setBorder(myLineBorder1);
+        backButton.setBounds(220, 0, image2.getIconWidth() - 10, image2.getIconHeight() - 10);
+        backButton.setBorder(myLineBorder1);
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -326,6 +332,7 @@ public class Register extends JFrame implements ActionListener {
     }
 
     public void registerNew() {
+
 
         String usernameget = identitiy;
         String username_s = "\\w{5}";//店员用户名必须是5位

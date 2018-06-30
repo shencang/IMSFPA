@@ -95,7 +95,7 @@ public class GetString {
     public static String agePnum ="输入错误！宠物年龄在1-4位之间数字";
     public static String chineseErr25 = "输入错误！填写内容必须2-5位汉字";
     public static String chineseErr15 = "输入错误！填写内容必须2-5位汉字";
-
+    public static String  tipRe =   "请选择身份，才能开始注册！";
 
 
 
