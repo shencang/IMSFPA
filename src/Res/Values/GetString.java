@@ -51,6 +51,7 @@ public class GetString {
     public static String Time_bd   = "凌晨";
     public static String welcome   = "好，欢迎登录系统";
     public static String welIdentity = "当前登录身份：领养人   |   用户名：";
+    public static String welIdentity_s = "当前登录身份：店员   |   用户名：";
     public static String Anum = "领养人编号";
     public static String Aname = "领养人姓名";
     public static String Pnum = "宠物编号";
@@ -69,6 +70,26 @@ public class GetString {
     public static String Aemail ="电子邮件";
     public static String Aremarks ="备注";
     public static String updateTips ="请在下方添加要修改信息：";
+    public static String updatePetTips ="请在下方添加要申请的宠物编号：";
+    public static String deledatePetTips ="请在下方添加要删除申请的宠物编号：";
+    public static String AAdate   ="签订日期";
+
+    public static String Pssnum = "店员编号";
+    public static String Pssname = "店员人姓名";
+    public static String Psstel="联系电话";
+    public static String Psssex ="性别";
+    public static String Pssadress ="通讯住址";
+    public static String Pssemail ="电子邮件";
+    public static String Pssremarks ="备注";
+    public static String Pssidentity ="身份";
+    public static String PSnum ="宠物店编号：";
+    public static String PSname ="宠物店名称：";
+    public static String PSSnum ="店员编号：";
+    public static String PSSnume ="店员姓名";
+    public static String PSStel ="店员电话";
+    public static String ERdate ="入店时间";
+
+
 
 
 

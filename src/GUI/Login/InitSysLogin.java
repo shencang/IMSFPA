@@ -137,6 +137,13 @@ public class InitSysLogin extends JFrame {
         /**
          * 中部面板
          */
+
+
+        //属于西部面板，需要跟换头像，发在这里
+        ImageIcon image_west = new ImageIcon("src\\Res\\Img\\Head.png");
+        JLabel background_west = new JLabel(image_west);
+
+        background_west.setBounds(10, 10, 120, 120);
         JPanel panel_center = new JPanel();
         panel_center.setLayout(null);
         panel_center.setPreferredSize(new Dimension(570, 200));
@@ -151,6 +158,57 @@ public class InitSysLogin extends JFrame {
         username.setBorder(myLineBorder);
         ActionListener usernametext = new GeText();
         username.addActionListener(usernametext);
+        username.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                if (username.getText().length()==5){
+                    ImageIcon image_west1 = new ImageIcon("src\\Res\\Img\\PSSHead.png");
+                    background_west.setIcon(image_west1);
+                    System.out.println("释放");
+
+
+                }
+                else if (username.getText().length()>=6&&username.getText().length()<=18){
+                    ImageIcon image_west2 = new ImageIcon("src\\Res\\Img\\adopterHead.png");
+                    background_west.setIcon(image_west2);
+
+                }
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                if (username.getText().length()==5){
+                    ImageIcon image_west1 = new ImageIcon("src\\Res\\Img\\PSSHead.png");
+                    background_west.setIcon(image_west1);
+
+
+                }
+                else if (username.getText().length()>=6&&username.getText().length()<=18){
+                    ImageIcon image_west2 = new ImageIcon("src\\Res\\Img\\adopterHead.png");
+                    background_west.setIcon(image_west2);
+
+                }
+
+
+
+            }
+        });
 
         /**
          * 密码名框
@@ -161,6 +219,55 @@ public class InitSysLogin extends JFrame {
         password.setBorder(myLineBorder);
         ActionListener passwordtext = new GeText();
         password.addActionListener(passwordtext);
+        password.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (username.getText().length()==5){
+                    ImageIcon image_west1 = new ImageIcon("src\\Res\\Img\\PSSHead.png");
+                    background_west.setIcon(image_west1);
+                    System.out.println("密码框触发头像跟换");
+
+
+                }
+                else if (username.getText().length()>=6&&username.getText().length()<=18){
+                    ImageIcon image_west2 = new ImageIcon("src\\Res\\Img\\adopterHead.png");
+                    background_west.setIcon(image_west2);
+
+                }
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                if (username.getText().length()==5){
+                    ImageIcon image_west1 = new ImageIcon("src\\Res\\Img\\PSSHead.png");
+                    background_west.setIcon(image_west1);
+                    System.out.println("碰触密码框导致更换");
+
+
+                }
+                else if (username.getText().length()>=6&&username.getText().length()<=18){
+                    ImageIcon image_west2 = new ImageIcon("src\\Res\\Img\\adopterHead.png");
+                    background_west.setIcon(image_west2);
+
+                }
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
 
 
         JCheckBox rember_pwd = new JCheckBox("记住密码");
@@ -187,10 +294,7 @@ public class InitSysLogin extends JFrame {
         panel_west.setLayout(null);
         panel_west.setPreferredSize(new Dimension(200, 200));
 
-        ImageIcon image_west = new ImageIcon("src\\Res\\Img\\HandImgage.png");
-        JLabel background_west = new JLabel(image_west);
 
-        background_west.setBounds(10, 10, 120, 120);
 
         panel_west.add(background_west);
         //JPanel panel_west=createPanel.CreateWestPanel();
@@ -341,6 +445,7 @@ public class InitSysLogin extends JFrame {
 
 
     }
+
 
 
 }
