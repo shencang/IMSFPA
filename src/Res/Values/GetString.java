@@ -53,10 +53,11 @@ public class GetString {
     public static String welcome   = "好，欢迎登录系统";
     public static String welIdentity = "当前登录身份：领养人   |   用户名：";
     public static String welIdentity_s = "当前登录身份：店员   |   用户名：";
+    public static String welIdentity_da = "当前登录身份：管理员   |   用户名：";
     public static String Anum = "领养人编号";
     public static String Aname = "领养人姓名";
     public static String Pnum = "宠物编号";
-    public static String Pname = "宠物名：";
+    public static String Pname = "宠物名";
     public static String ARDate = "领养日期";
     public static String Ptype = "宠物类型";
     public static String Pvarieties = "宠物品种";
@@ -71,6 +72,7 @@ public class GetString {
     public static String Aemail ="电子邮件";
     public static String Aremarks ="备注";
     public static String updateTips ="请在下方添加要修改信息：";
+    public static String deleTips = "请在下方添加要删除信息：";
     public static String updatePetTips ="请在下方添加要申请的宠物编号：";
     public static String deledatePetTips ="请在下方添加要删除申请的宠物编号：";
     public static String AAdate   ="签订日期";
@@ -89,13 +91,27 @@ public class GetString {
     public static String PSSnume ="店员姓名";
     public static String PSStel ="店员电话";
     public static String ERdate ="入店时间";
+    public static String PSSemail = "电子邮件";
 
+    public static String errnum5 = "输入错误！请输入5位之间字符";
+    public static String errnum20 = "输入错误！请输入1-20位之间字符";
     public static String errPnum ="输入错误！宠物编号在1-20位之间字符";
     public static String errAnum ="输入错误！领养人编号在6-19位之间字符";
     public static String agePnum ="输入错误！宠物年龄在1-4位之间数字";
     public static String chineseErr25 = "输入错误！填写内容必须2-5位汉字";
     public static String chineseErr15 = "输入错误！填写内容必须2-5位汉字";
+    public static String chineseErr110 = "输入错误！填写内容必须2-5位汉字";
     public static String  tipRe =   "请选择身份，才能开始注册！";
+    public static String PSSremarks = "备注";
+    public static String PSSsex = "备注";
+
+
+    public static String PSaddress = "店铺地址";
+    public static String PStel = "店铺电话";
+    public static String PSremarks = "备注";
+
+
+
 
 
 

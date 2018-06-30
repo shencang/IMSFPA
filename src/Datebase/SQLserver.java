@@ -1,16 +1,12 @@
 package Datebase;
 
 import GUI.Adopter.AdopterMain;
-import GUI.Login.GeText;
-import GUI.Login.InitSysLogin;
-import GUI.Login.Register;
 import GUI.Pss.PssMain;
+import GUI.PssADM.PssADMmain;
 import Other.GetTime;
 import Res.Values.GetString;
-import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 import javax.swing.*;
-import java.awt.*;
 import java.sql.*;
 
 public class SQLserver {
@@ -92,65 +88,31 @@ public class SQLserver {
         }
     }
 
-    //登录验证方法
-    public Boolean SQLverify(String users,String password){
-        Connection conLogin=null;
-        PreparedStatement psLogin = null;
-        ResultSet rsLogin= null;
+    public static int IDENTITY(String name) {
+
+        int result = 0;
+        Connection conLoginAP = null;
+        ResultSet reLoginAP = null;
+        PreparedStatement psLoginAP = null;
         try {
-
-            conLogin=DriverManager.getConnection(URL, rootID, rootpassword);
-            if (users.length()==5){
-                psLogin=conLogin.prepareStatement("select * from PetShopStaff where PSSnum=? and PSSpassword=? ");
-                psLogin.setString(1,users);
-                psLogin.setString(2,password);
-                rsLogin =psLogin.executeQuery();
-            }
-            if (users.length()>=6&&users.length()<=18){
-
-                psLogin=conLogin.prepareStatement("select * from Adopter where Anum=? and Apassword=? ");
-                psLogin.setString(1,users);
-                psLogin.setString(2,password);
-                rsLogin =psLogin.executeQuery();
+            // 获得连接
+            conLoginAP = DriverManager.getConnection(URL, rootID, rootpassword);
+            // 建立查询条件
+            String sql = "select PSSidentity from PetShopStaff where PSSnum=?";
+            psLoginAP = conLoginAP.prepareStatement(sql);
+            psLoginAP.setString(1, name);
+            // 执行查询
+            reLoginAP = psLoginAP.executeQuery();
+            while (reLoginAP.next()) {
+                result = reLoginAP.getInt("PSSidentity");
+                System.out.println(result);
             }
 
 
-            // ResultSet结果集,可以把ResultSet理解成返回一张表行的结果集
-
-            if( rsLogin.next()){
-                user =  rsLogin.getString(1);
-                pwd =  rsLogin.getString(2);
-              //  JOptionPane.showMessageDialog(null,"登陆成功","尚未完工",JOptionPane.WARNING_MESSAGE);
-                if (users.length()>=6&&users.length()<=18){
-                    AdopterMain adopterMain =new AdopterMain();
-                    adopterMain.adopeterStart(users);
-
-                }
-                if(users.length()==5){
-                    PssMain pssMain = new PssMain();
-                    pssMain.pssStart(users);
-                }
-                System.out.println("成功获取到密码和用户名from数据库");
-                System.out.println(user + "\t" + pwd + "\t");
-
-                conLogin.close();
-                return  true;
-
-            }
-            else {
-                JOptionPane.showMessageDialog(null, "用户名或者密码错误，请重新输入", "提示消息", JOptionPane.ERROR_MESSAGE);
-
-
-            }
-
-
-        }catch (SQLException e){
-            e.printStackTrace();
-            System.out.println("登录出错");
+        } catch (SQLException sqle) {
+            JOptionPane.showMessageDialog(null, "数据操作错误", "错误", JOptionPane.ERROR_MESSAGE);
         }
-
-
-        return false;
+        return result;
     }
 
     //登录注册验证方法
@@ -1132,5 +1094,608 @@ public class SQLserver {
         }
     }
 
+    public static Object[][] allPsInfo() {
+
+        Object[][] data = null;
+        Connection conLoginAP = null;
+        ResultSet reLoginAP = null;
+        PreparedStatement psLoginAP = null;
+        int result = 0;
+        try {
+            // 获得连接
+            conLoginAP = DriverManager.getConnection(URL, rootID, rootpassword);
+            // 建立查询条件
+            String sql = "select PSSnum,PSSnume,PSSsex,PSStel,PSSemail,PSSremarks from PetShopStaff ";
+            psLoginAP = conLoginAP.prepareStatement(sql);
+            // 执行查询
+            reLoginAP = psLoginAP.executeQuery();
+            // 计算有多少条记录
+            int count = 0;
+            while (reLoginAP.next()) {
+                count++;
+            }
+            System.out.println(count);
+            reLoginAP = psLoginAP.executeQuery();
+            // 将查询获得的记录数据，转换成适合生成JTable的数据形式
+            Object[][] info = new Object[count][6];
+            count = 0;
+            while (reLoginAP.next()) {
+
+                info[count][0] = reLoginAP.getString(1);
+                info[count][1] = reLoginAP.getString(2);
+                info[count][2] = reLoginAP.getString(3);
+                info[count][3] = reLoginAP.getString(4);
+                info[count][4] = reLoginAP.getString(5);
+                info[count][5] = reLoginAP.getString(6);
+
+
+                count++;
+                System.out.println("查询全部中");
+            }
+            data = info;
+        } catch (SQLException sqle) {
+            JOptionPane.showMessageDialog(null, "数据操作错误", "错误", JOptionPane.ERROR_MESSAGE);
+        }
+
+        return data;
+
+    }
+
+    public static Object[][] findEMP() {
+        Object[][] date = null;
+        Connection conLoginAP = null;
+        ResultSet reLoginAP = null;
+        PreparedStatement psLoginAP = null;
+        try {
+            // 获得连接
+            conLoginAP = DriverManager.getConnection(URL, rootID, rootpassword);
+            // 建立查询条件
+            String sql = "select * from EmploymentRel ";
+            psLoginAP = conLoginAP.prepareStatement(sql);
+            // 执行查询
+            reLoginAP = psLoginAP.executeQuery();
+            // 计算有多少条记录
+            int count = 0;
+            while (reLoginAP.next()) {
+                count++;
+            }
+            System.out.println(count);
+            reLoginAP = psLoginAP.executeQuery();
+            // 将查询获得的记录数据，转换成适合生成JTable的数据形式
+            Object[][] info = new Object[count][3];
+            count = 0;
+            while (reLoginAP.next()) {
+                info[count][0] = reLoginAP.getString(1);
+                info[count][1] = reLoginAP.getString(2);
+                info[count][2] = reLoginAP.getDate(3);
+                System.out.println("雇佣表在运行");
+
+                count++;
+            }
+            date = info;
+
+        } catch (SQLException sqle) {
+            JOptionPane.showMessageDialog(null, "数据操作错误", "错误", JOptionPane.ERROR_MESSAGE);
+        }
+        return date;
+    }
+
+    public static Object[][] findPs() {
+        Object[][] date = null;
+        Connection conLoginAP = null;
+        ResultSet reLoginAP = null;
+        PreparedStatement psLoginAP = null;
+        try {
+            // 获得连接
+            conLoginAP = DriverManager.getConnection(URL, rootID, rootpassword);
+            // 建立查询条件
+            String sql = "select * from  PetShop  ";
+            psLoginAP = conLoginAP.prepareStatement(sql);
+            // 执行查询
+            reLoginAP = psLoginAP.executeQuery();
+            // 计算有多少条记录
+            int count = 0;
+            while (reLoginAP.next()) {
+                count++;
+            }
+            System.out.println(count);
+            reLoginAP = psLoginAP.executeQuery();
+            // 将查询获得的记录数据，转换成适合生成JTable的数据形式
+            Object[][] info = new Object[count][5];
+            count = 0;
+            while (reLoginAP.next()) {
+
+                info[count][0] = reLoginAP.getString(1);
+                info[count][1] = reLoginAP.getString(2);
+                info[count][2] = reLoginAP.getString(3);
+                info[count][3] = reLoginAP.getString(4);
+                info[count][4] = reLoginAP.getString(5);
+                count++;
+                System.out.println("查询全部中");
+            }
+            date = info;
+
+        } catch (SQLException sqle) {
+            JOptionPane.showMessageDialog(null, "数据操作错误", "错误", JOptionPane.ERROR_MESSAGE);
+        }
+        return date;
+    }
+
+    //登录验证方法
+    public Boolean SQLverify(String users, String password) {
+        Connection conLogin = null;
+        PreparedStatement psLogin = null;
+        ResultSet rsLogin = null;
+        try {
+
+            conLogin = DriverManager.getConnection(URL, rootID, rootpassword);
+            if (users.length() == 5) {
+                psLogin = conLogin.prepareStatement("select * from PetShopStaff where PSSnum=? and PSSpassword=? ");
+                psLogin.setString(1, users);
+                psLogin.setString(2, password);
+                rsLogin = psLogin.executeQuery();
+            }
+            if (users.length() >= 6 && users.length() <= 18) {
+
+                psLogin = conLogin.prepareStatement("select * from Adopter where Anum=? and Apassword=? ");
+                psLogin.setString(1, users);
+                psLogin.setString(2, password);
+                rsLogin = psLogin.executeQuery();
+            }
+
+
+            // ResultSet结果集,可以把ResultSet理解成返回一张表行的结果集
+
+            if (rsLogin.next()) {
+                user = rsLogin.getString(1);
+                pwd = rsLogin.getString(2);
+                //  JOptionPane.showMessageDialog(null,"登陆成功","尚未完工",JOptionPane.WARNING_MESSAGE);
+                if (users.length() >= 6 && users.length() <= 18) {
+                    AdopterMain adopterMain = new AdopterMain();
+                    adopterMain.adopeterStart(users);
+
+                }
+                if (users.length() == 5) {
+                    if (SQLserver.IDENTITY(users) == 1) {
+                        PssADMmain pssADMmain = new PssADMmain();
+                        pssADMmain.pssStart(user);
+                    } else {
+                        PssMain pssMain = new PssMain();
+                        pssMain.pssStart(users);
+                    }
+
+
+                }
+                System.out.println("成功获取到密码和用户名from数据库");
+                System.out.println(user + "\t" + pwd + "\t");
+
+                conLogin.close();
+                return true;
+
+            } else {
+                JOptionPane.showMessageDialog(null, "用户名或者密码错误，请重新输入", "提示消息", JOptionPane.ERROR_MESSAGE);
+
+
+            }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("登录出错");
+        }
+
+
+        return false;
+    }
+
+    public void deleAR(String usernamue, String textP, String textA) {
+
+        GetTime getTime = new GetTime();
+        Connection conLoginAP = null;
+        ResultSet reLoginAP = null;
+        PreparedStatement psLoginAP = null;
+        int result = 0;
+        try {
+            //查询
+            // 获得连接
+            conLoginAP = DriverManager.getConnection(URL, rootID, rootpassword);
+            // 建立查询条件
+            String sql = "select Pnum from  Pet  where Pnum = ?";
+            psLoginAP = conLoginAP.prepareStatement(sql);
+            psLoginAP.setString(1, textP);
+            // 执行查询
+            reLoginAP = psLoginAP.executeQuery();
+            // 计算有多少条记录
+            int count = 0;
+            while (reLoginAP.next()) {
+                count++;
+            }
+            System.out.println("计算器:" + count);
+            String[] pnum = new String[count];
+            reLoginAP = psLoginAP.executeQuery();
+            count = 0;
+            while (reLoginAP.next()) {
+                pnum[count] = reLoginAP.getString("Pnum");
+
+                count++;
+            }
+            System.out.println(pnum[0]);
+            if (pnum[0] == null) {
+                JOptionPane.showMessageDialog(null, "没有找到该宠物，请重新检查输入！", "错误", JOptionPane.ERROR_MESSAGE);
+
+
+            } else {
+
+                String sql2 = "select Anum from  Adopter  where Anum = ?";
+                psLoginAP = conLoginAP.prepareStatement(sql2);
+                psLoginAP.setString(1, textA);
+                // 执行查询
+                reLoginAP = psLoginAP.executeQuery();
+                // 计算有多少条记录
+                count = 0;
+                while (reLoginAP.next()) {
+                    count++;
+                }
+                System.out.println("计算器:" + count);
+                String[] anum = new String[count];
+                reLoginAP = psLoginAP.executeQuery();
+                count = 0;
+                while (reLoginAP.next()) {
+                    anum[count] = reLoginAP.getString("Anum");
+
+                    count++;
+                }
+                System.out.println(anum[0]);
+
+                if (anum[0] == null) {
+                    JOptionPane.showMessageDialog(null, "没有找到该领养人，请重新检查输入！", "错误", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    System.out.println(pnum[0] + " " + anum[0]);
+                    String sql3 = "delete from AdoptiveRel where Pnum=? and Anum=?";
+                    psLoginAP = conLoginAP.prepareStatement(sql3);
+                    psLoginAP.setString(1, pnum[0]);
+                    psLoginAP.setString(2, anum[0]);
+                    //reLoginAP = psLoginAP.getResultSet();
+                    result = psLoginAP.executeUpdate();
+                    System.out.println(result);
+
+                    /*String sql3 = "delete from AdoApplication where Pnum=?";
+                    psLoginAP = conLoginAP.prepareStatement(sql3);
+                    psLoginAP.setString(1,petnum);
+                    //reLoginAP = psLoginAP.getResultSet();
+                    result = psLoginAP.executeUpdate();*/
+
+                }
+            }
+        } catch (SQLException sqle) {
+            JOptionPane.showMessageDialog(null, "数据操作错误", "错误", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public void insertEMP(String usernamue, String textPS, String textPSS) {
+
+        GetTime getTime = new GetTime();
+        String time = getTime.getYear() + "." + getTime.getMmonth() + "." + getTime.getDate();
+        Connection conLoginAP = null;
+        ResultSet reLoginAP = null;
+        PreparedStatement psLoginAP = null;
+        int result = 0;
+        try {
+            //查询
+            // 获得连接
+            conLoginAP = DriverManager.getConnection(URL, rootID, rootpassword);
+            // 建立查询条件
+            String sql = "select PSnum from  PetShop  where PSnum = ?";
+            psLoginAP = conLoginAP.prepareStatement(sql);
+            psLoginAP.setString(1, textPS);
+            // 执行查询
+            reLoginAP = psLoginAP.executeQuery();
+            // 计算有多少条记录
+            int count = 0;
+            while (reLoginAP.next()) {
+                count++;
+            }
+            System.out.println("计算器:" + count);
+            String[] pnum = new String[count];
+            reLoginAP = psLoginAP.executeQuery();
+            count = 0;
+            while (reLoginAP.next()) {
+                pnum[count] = reLoginAP.getString(1);
+
+                count++;
+            }
+            System.out.println(pnum[0]);
+            if (pnum[0] == null) {
+                JOptionPane.showMessageDialog(null, "没有找到该宠物店，请重新检查输入！", "错误", JOptionPane.ERROR_MESSAGE);
+
+
+            } else {
+
+                String sql2 = "select PSSnum from  PetShopStaff  where PSSnum = ?";
+                psLoginAP = conLoginAP.prepareStatement(sql2);
+                psLoginAP.setString(1, textPSS);
+                // 执行查询
+                reLoginAP = psLoginAP.executeQuery();
+                // 计算有多少条记录
+                count = 0;
+                while (reLoginAP.next()) {
+                    count++;
+                }
+                System.out.println("计算器:" + count);
+                String[] anum = new String[count];
+                reLoginAP = psLoginAP.executeQuery();
+                count = 0;
+                while (reLoginAP.next()) {
+                    anum[count] = reLoginAP.getString(1);
+
+                    count++;
+                }
+                System.out.println(anum[0]);
+
+                if (anum[0] == null) {
+                    JOptionPane.showMessageDialog(null, "没有找到该店员，请重新检查输入！", "错误", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    String sql3 = "INSERT INTO EmploymentRel VALUES (?,?,?)";
+                    psLoginAP = conLoginAP.prepareStatement(sql3);
+                    psLoginAP.setString(1, textPS);
+                    psLoginAP.setString(2, textPSS);
+                    psLoginAP.setString(3, time);
+                    //reLoginAP = psLoginAP.getResultSet();
+                    result = psLoginAP.executeUpdate();
+                }
+            }
+        } catch (SQLException sqle) {
+            JOptionPane.showMessageDialog(null, "数据操作错误", "错误", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public void deleEMP(String usernamue, String textPS, String textPSS) {
+
+        GetTime getTime = new GetTime();
+        Connection conLoginAP = null;
+        ResultSet reLoginAP = null;
+        PreparedStatement psLoginAP = null;
+        int result = 0;
+        try {
+            //查询
+            // 获得连接
+            conLoginAP = DriverManager.getConnection(URL, rootID, rootpassword);
+            // 建立查询条件
+            String sql = "select PSnum from PetShop  where Psnum = ?";
+            psLoginAP = conLoginAP.prepareStatement(sql);
+            psLoginAP.setString(1, textPS);
+            // 执行查询
+            reLoginAP = psLoginAP.executeQuery();
+            // 计算有多少条记录
+            int count = 0;
+            while (reLoginAP.next()) {
+                count++;
+            }
+            System.out.println("计算器:" + count);
+            String[] pnum = new String[count];
+            reLoginAP = psLoginAP.executeQuery();
+            count = 0;
+            while (reLoginAP.next()) {
+                pnum[count] = reLoginAP.getString(1);
+
+                count++;
+            }
+            System.out.println(pnum[0]);
+            if (pnum[0] == null) {
+                JOptionPane.showMessageDialog(null, "没有找到该宠物店，请重新检查输入！", "错误", JOptionPane.ERROR_MESSAGE);
+
+
+            } else {
+
+                String sql2 = "select PSSnum from  PetShopStaff  where PSSnum = ?";
+                psLoginAP = conLoginAP.prepareStatement(sql2);
+                psLoginAP.setString(1, textPSS);
+                // 执行查询
+                reLoginAP = psLoginAP.executeQuery();
+                // 计算有多少条记录
+                count = 0;
+                while (reLoginAP.next()) {
+                    count++;
+                }
+                System.out.println("计算器:" + count);
+                String[] anum = new String[count];
+                reLoginAP = psLoginAP.executeQuery();
+                count = 0;
+                while (reLoginAP.next()) {
+                    anum[count] = reLoginAP.getString(1);
+
+                    count++;
+                }
+                System.out.println(anum[0]);
+
+                if (anum[0] == null) {
+                    JOptionPane.showMessageDialog(null, "没有找到该店员，请重新检查输入！", "错误", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    System.out.println(pnum[0] + " " + anum[0]);
+                    String sql3 = "delete from EmploymentRel where PSnum=? and PSSnum=?";
+                    psLoginAP = conLoginAP.prepareStatement(sql3);
+                    psLoginAP.setString(1, pnum[0]);
+                    psLoginAP.setString(2, anum[0]);
+                    //reLoginAP = psLoginAP.getResultSet();
+                    result = psLoginAP.executeUpdate();
+                    System.out.println(result);
+
+                    /*String sql3 = "delete from AdoApplication where Pnum=?";
+                    psLoginAP = conLoginAP.prepareStatement(sql3);
+                    psLoginAP.setString(1,petnum);
+                    //reLoginAP = psLoginAP.getResultSet();
+                    result = psLoginAP.executeUpdate();*/
+
+                }
+            }
+        } catch (SQLException sqle) {
+            JOptionPane.showMessageDialog(null, "数据操作错误", "错误", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public void insertPs(String usernamue, String text, String text1, String text2, String text3, String text4) {
+        String PSnums = null;
+        GetTime getTime = new GetTime();
+        String time = getTime.getYear() + "." + getTime.getMmonth() + "." + getTime.getDate();
+
+
+        Connection conLoginAP = null;
+        ResultSet reLoginAP = null;
+        PreparedStatement psLoginAP = null;
+        int result = 0;
+        try {
+            //查询
+            // 获得连接
+            conLoginAP = DriverManager.getConnection(URL, rootID, rootpassword);
+            // 建立查询条件
+            String sql = "select PSnum from  EmploymentRel  where Pssnum = ?";
+            psLoginAP = conLoginAP.prepareStatement(sql);
+            psLoginAP.setString(1, usernamue);
+            // 执行查询
+            reLoginAP = psLoginAP.executeQuery();
+            // 计算有多少条记录
+            int count = 0;
+            while (reLoginAP.next()) {
+
+                count++;
+            }
+            System.out.println("计算器:" + count);
+
+            reLoginAP = psLoginAP.executeQuery();
+            count = 0;
+            while (reLoginAP.next()) {
+                PSnums = reLoginAP.getString(1);
+                count++;
+            }
+
+
+            String sql2 = "INSERT INTO PetShop VALUES (?,?,?,?,?) ";
+            psLoginAP = conLoginAP.prepareStatement(sql2);
+            psLoginAP.setString(1, text);
+            psLoginAP.setString(2, text1);
+            psLoginAP.setString(3, text2);
+            psLoginAP.setString(4, text3);
+            psLoginAP.setString(5, text4);
+
+            System.out.println("开始插入");
+            result = psLoginAP.executeUpdate();
+
+
+        } catch (SQLException sqle) {
+            JOptionPane.showMessageDialog(null, "数据操作错误", "错误", JOptionPane.ERROR_MESSAGE);
+        }
+
+
+    }
+
+    public void delePS(String usernamue, String textPS) {
+
+        GetTime getTime = new GetTime();
+        Connection conLoginAP = null;
+        ResultSet reLoginAP = null;
+        PreparedStatement psLoginAP = null;
+        int result = 0;
+        try {
+            //查询
+            // 获得连接
+            conLoginAP = DriverManager.getConnection(URL, rootID, rootpassword);
+            // 建立查询条件
+            String sql = "select PSnum from PetShop  where Psnum = ?";
+            psLoginAP = conLoginAP.prepareStatement(sql);
+            psLoginAP.setString(1, textPS);
+            // 执行查询
+            reLoginAP = psLoginAP.executeQuery();
+            // 计算有多少条记录
+            int count = 0;
+            while (reLoginAP.next()) {
+                count++;
+            }
+            System.out.println("计算器:" + count);
+            String[] pnum = new String[count];
+            reLoginAP = psLoginAP.executeQuery();
+            count = 0;
+            while (reLoginAP.next()) {
+                pnum[count] = reLoginAP.getString(1);
+
+                count++;
+            }
+            System.out.println(pnum[0]);
+            if (pnum[0] == null) {
+                JOptionPane.showMessageDialog(null, "没有找到该宠物店，请重新检查输入！", "错误", JOptionPane.ERROR_MESSAGE);
+
+
+            } else {
+
+                String sql3 = "delete from PetShop where PSnum=? ";
+                psLoginAP = conLoginAP.prepareStatement(sql3);
+                psLoginAP.setString(1, pnum[0]);
+                //reLoginAP = psLoginAP.getResultSet();
+                result = psLoginAP.executeUpdate();
+                System.out.println(result);
+
+
+            }
+
+        } catch (SQLException sqle) {
+            JOptionPane.showMessageDialog(null, "数据操作错误", "错误", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public void updatePs(String usernamue, String text, String text1, String text2, String text3, String text4) {
+        Connection conLoginAP = null;
+        ResultSet reLoginAP = null;
+        PreparedStatement psLoginAP = null;
+        String[] num = new String[1];
+        int result = 0;
+        try {
+            //查询
+            // 获得连接
+            conLoginAP = DriverManager.getConnection(URL, rootID, rootpassword);
+            // 建立查询条件
+            String sql = "select PSnum from  PetShop  where Psnum = ?";
+            psLoginAP = conLoginAP.prepareStatement(sql);
+            psLoginAP.setString(1, text);
+            // 执行查询
+            reLoginAP = psLoginAP.executeQuery();
+            // 计算有多少条记录
+            int count = 0;
+            while (reLoginAP.next()) {
+
+                num[0] = reLoginAP.getString(1);
+                count++;
+            }
+            System.out.println("计算器:" + count);
+
+            reLoginAP = psLoginAP.executeQuery();
+            count = 0;
+
+            System.out.println(num[0]);
+            if (num[0] == null) {
+                JOptionPane.showMessageDialog(null, "没有找到该宠物店，请重新检查输入！", "错误", JOptionPane.ERROR_MESSAGE);
+
+
+            } else {
+
+
+                String sql2 = "update PetShop set PSname=?,PSaddress=?,PStel=?,PSremarks=? where PSnum=?";
+                psLoginAP = conLoginAP.prepareStatement(sql2);
+                psLoginAP.setString(1, text1);
+                psLoginAP.setString(2, text2);
+                psLoginAP.setString(3, text3);
+                psLoginAP.setString(4, text4);
+                psLoginAP.setString(5, text);
+                reLoginAP = psLoginAP.getResultSet();
+
+                System.out.println("开始gai");
+                result = psLoginAP.executeUpdate();
+
+
+            }
+        } catch (SQLException sqle) {
+            JOptionPane.showMessageDialog(null, "数据操作错误", "错误", JOptionPane.ERROR_MESSAGE);
+        }
+
+
+    }
 
 }
