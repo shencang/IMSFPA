@@ -39,6 +39,7 @@ public class GetString {
     public static String adressErr = "输入错误！请输入15位以下中文";
     public static String remarkErr = "输入错误！请输入50位以下中文";
     public static String sexErr = "输入错误！请输入男或者女";
+    public static String psexErr = "输入错误！请输入公，母或者无";
     public static String TIP = "提示信息";
     public static String SQLusernameErr = "用户名已经存在！";
     public static String registerNo = "注册失败";
@@ -88,6 +89,12 @@ public class GetString {
     public static String PSSnume ="店员姓名";
     public static String PSStel ="店员电话";
     public static String ERdate ="入店时间";
+
+    public static String errPnum ="输入错误！宠物编号在1-20位之间字符";
+    public static String errAnum ="输入错误！领养人编号在6-19位之间字符";
+    public static String agePnum ="输入错误！宠物年龄在1-4位之间数字";
+    public static String chineseErr25 = "输入错误！填写内容必须2-5位汉字";
+    public static String chineseErr15 = "输入错误！填写内容必须2-5位汉字";
 
 
 

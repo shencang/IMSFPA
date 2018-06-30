@@ -70,7 +70,7 @@ public class PsPet extends JFrame implements ActionListener {
 
     public  void  start(String username){
 
-        PsInfo find = new PsInfo();
+        PsPet find = new PsPet();
         find.setTitle(GetString.messageTitle);
         find.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         find.setLocation(LOCATION_X, LOCATION_Y);

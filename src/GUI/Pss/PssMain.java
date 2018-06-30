@@ -191,9 +191,8 @@ public class PssMain extends JFrame implements ActionListener {
         jButtonsetApp.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                //AdoApplication adoApplication = new AdoApplication();
-              //  adoApplication.start(username);
-
+                PetAdoApproval petAdoApproval = new PetAdoApproval();
+                petAdoApproval.start(username);
             }
 
             @Override
@@ -406,8 +405,8 @@ public class PssMain extends JFrame implements ActionListener {
         jButtonPetGet.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-              //  AdoDele adoDele = new AdoDele();
-               // adoDele.start(username);
+             InsertPet insertPet = new InsertPet();
+             insertPet.start(username);
             }
 
             @Override
@@ -440,8 +439,8 @@ public class PssMain extends JFrame implements ActionListener {
         jButtonsetRSPet.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                //  AdoDele adoDele = new AdoDele();
-                // adoDele.start(username);
+                InsertAR insertAR = new InsertAR();
+                insertAR.start(username);
             }
 
             @Override
