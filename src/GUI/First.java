@@ -12,6 +12,7 @@ public class First extends JFrame {
 
     private JPanel buttonPanel;
     private JFrame setLogo;
+
     public First(){
 
         //创建窗口
@@ -19,6 +20,7 @@ public class First extends JFrame {
         setLogo.setSize((1920), (1080));
         setLogo.setLocation(0, 0);
         setLogo.setLayout(null);
+        setLogo.setIconImage(Toolkit.getDefaultToolkit().getImage("src\\Res\\Img\\logo.png"));
         JLabel l = new JLabel(GetString.name);
         ImageIcon i = new ImageIcon("src\\Res\\Img\\firstpage.jpg");
         i.setImage(i.getImage().getScaledInstance((1920),(1080),Image.SCALE_AREA_AVERAGING));

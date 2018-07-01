@@ -63,6 +63,8 @@ public class UpdatePS extends JFrame implements ActionListener {
     public void start(String name) {
 
         UpdatePS update = new UpdatePS();
+        update.setIconImage(Toolkit.getDefaultToolkit().getImage("src\\Res\\Img\\logo.png"));
+
         update.setTitle(GetString.messageTitle);
         update.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         update.setLocation(LOCATION_X, LOCATION_Y);

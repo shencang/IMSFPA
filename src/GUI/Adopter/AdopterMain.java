@@ -3,15 +3,12 @@ package GUI.Adopter;
 import Datebase.SQLserver;
 import GUI.Login.InitSysLogin;
 import GUI.Login.MyLineBorder;
-import GUI.Login.Register;
 import Other.GetTime;
 import Res.Values.GetString;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.sql.Connection;
-import java.util.Calendar;
 
 public class AdopterMain extends JFrame implements ActionListener {
 
@@ -55,6 +52,7 @@ public class AdopterMain extends JFrame implements ActionListener {
 
     public void  adopeterStart(String username){
         AdopterMain adopterMain= new AdopterMain();
+        adopterMain.setIconImage(Toolkit.getDefaultToolkit().getImage("src\\Res\\Img\\logo.png"));
         adopterMain.setTitle(GetString.adopterTitle);
         adopterMain.setSize(WINDOW_WIDTH,WINDOW_HEIGHT);
         adopterMain.setLocation(LOCATION_X,LOCATION_Y);

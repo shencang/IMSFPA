@@ -2,7 +2,6 @@ package GUI.Adopter;
 
 import Datebase.SQLserver;
 import GUI.Login.MyLineBorder;
-import GUI.Login.Register;
 import Res.Values.GetString;
 
 import javax.swing.*;
@@ -67,6 +66,7 @@ public class FindPeted extends JFrame implements ActionListener {
     public  void  start(String name){
 
         FindPeted find = new FindPeted();
+        find.setIconImage(Toolkit.getDefaultToolkit().getImage("src\\Res\\Img\\logo.png"));
         find.setTitle(GetString.messageTitle);
         find.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         find.setLocation(LOCATION_X, LOCATION_Y);

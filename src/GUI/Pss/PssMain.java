@@ -53,6 +53,8 @@ public class PssMain extends JFrame implements ActionListener {
 
     public void  pssStart(String username){
         PssMain adopterMain= new PssMain();
+        adopterMain.setIconImage(Toolkit.getDefaultToolkit().getImage("src\\Res\\Img\\logo.png"));
+
         adopterMain.setTitle(GetString.adopterTitle);
         adopterMain.setSize(WINDOW_WIDTH,WINDOW_HEIGHT);
         adopterMain.setLocation(LOCATION_X,LOCATION_Y);

@@ -1,20 +1,17 @@
 package GUI.Adopter;
 
 
+import Datebase.SQLserver;
+import GUI.Login.MyLineBorder;
+import Res.Values.GetString;
 
-
-        import Datebase.SQLserver;
-        import GUI.Login.MyLineBorder;
-        import GUI.Login.Register;
-        import Res.Values.GetString;
-
-        import javax.swing.*;
-        import javax.swing.table.JTableHeader;
-        import java.awt.*;
-        import java.awt.event.ActionEvent;
-        import java.awt.event.ActionListener;
-        import java.awt.event.MouseAdapter;
-        import java.awt.event.MouseEvent;
+import javax.swing.*;
+import javax.swing.table.JTableHeader;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class AdoDele extends JFrame implements ActionListener {
 
@@ -68,6 +65,7 @@ public class AdoDele extends JFrame implements ActionListener {
     public  void  start(String name){
 
         AdoDele update = new AdoDele();
+        update.setIconImage(Toolkit.getDefaultToolkit().getImage("src\\Res\\Img\\logo.png"));
         update.setTitle(GetString.messageTitle);
         update.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         update.setLocation(LOCATION_X, LOCATION_Y);

@@ -6,6 +6,9 @@ import Res.Values.GetString;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 
 public class InitSysLogin extends JFrame {
 
@@ -17,13 +20,14 @@ public class InitSysLogin extends JFrame {
     public int WINDOW_HEIGHT = 400;
     public int LOCATION_X = 497;
     public int LOCATION_Y = 242;
-    static JTextField username;
-    static JTextField password;
+    static JTextField username = new JTextField();
+    static JTextField password = new JPasswordField(JPasswordField.LEFT);
     boolean flag = false;
     JLabel close_label;
     String usernames = "\\w{5,18}";//用户名必须是5-18
     String passwords = "\\w{6}";//"密码必须为6位字母或者数字";
 
+    boolean getnamApas = false;
 
     //定义面板
     public InitSysLogin() {
@@ -64,8 +68,10 @@ public class InitSysLogin extends JFrame {
         return flag;
     }
 
+
     public void initLogin() {
         InitSysLogin login = new InitSysLogin();
+        login.setIconImage(Toolkit.getDefaultToolkit().getImage("src\\Res\\Img\\logo.png"));
         login.setTitle(LOG_TITLE);
         login.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         login.setLocation(LOCATION_X, LOCATION_Y);
@@ -74,6 +80,7 @@ public class InitSysLogin extends JFrame {
         login.setResizable(true);    //禁止改变窗口大小
         BorderLayout border_layout = new BorderLayout();
         login.setLayout(border_layout);
+
 
         /**
          * 北部面板
@@ -152,7 +159,7 @@ public class InitSysLogin extends JFrame {
         /**
          * 用户名框
          */
-        username = new JTextField();
+        //username = new JTextField();
         username.setBounds(70, 25, 375, 30);
         username.setToolTipText(GetString.usernameTip);
         username.setBorder(myLineBorder);
@@ -213,7 +220,7 @@ public class InitSysLogin extends JFrame {
         /**
          * 密码名框
          */
-        password = new JPasswordField(JPasswordField.LEFT);
+        //password = new JPasswordField(JPasswordField.LEFT);
         password.setBounds(70, 54, 375, 30);
         password.setToolTipText(GetString.passwordTip);
         password.setBorder(myLineBorder);
@@ -272,9 +279,11 @@ public class InitSysLogin extends JFrame {
 
         JCheckBox rember_pwd = new JCheckBox("记住密码");
         rember_pwd.setBounds(150, 90, 80, 20);
+        getnamApas = rember_pwd.isSelected();
 
         JCheckBox login_auto = new JCheckBox("自动登录");
         login_auto.setBounds(250, 90, 80, 20);
+
 
 
         panel_center.add(rember_pwd);
@@ -320,6 +329,25 @@ public class InitSysLogin extends JFrame {
                 boolean userFlag = username.getText().matches(usernames);
                 boolean passwordFlag = password.getText().matches(passwords);
 
+                if (rember_pwd.isSelected()) {
+                    getnamApas = rember_pwd.isSelected();
+                    try {
+                        String pathname = "src\\Res\\Values\\user.save";
+                        File filename = new File(pathname);
+                        BufferedWriter out = new BufferedWriter(new FileWriter(filename));
+                        // System.out.println(newoldName);
+                        out.write(username.getText() + "\n" + password.getText()); // \r\n即为换行
+                        out.flush(); // 把缓存区内容压入文件
+                        out.close(); // 最后记得关闭文件
+                    } catch (Exception es) {
+                        es.printStackTrace();
+                    }
+
+                }
+
+
+
+
                 if (userFlag == false) {
 
                     JOptionPane.showMessageDialog(null, GetString.usernameErr, GetString.TIP, JOptionPane.WARNING_MESSAGE);
@@ -336,7 +364,9 @@ public class InitSysLogin extends JFrame {
                 password.setText("");
                 if (flag) {
 
+
                     login.dispose();
+
 
                     System.out.println("YES");
 
@@ -369,9 +399,12 @@ public class InitSysLogin extends JFrame {
         regeist.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
+
+
                 Register register = new Register();
                 register.registerStart();
                 login.dispose();
+
 
             }
 

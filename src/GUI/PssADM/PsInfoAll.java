@@ -61,6 +61,8 @@ public class PsInfoAll extends JFrame implements ActionListener {
     public void start(String username) {
 
         PsInfoAll find = new PsInfoAll();
+        find.setIconImage(Toolkit.getDefaultToolkit().getImage("src\\Res\\Img\\logo.png"));
+
         find.setTitle(GetString.messageTitle);
         find.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         find.setLocation(LOCATION_X, LOCATION_Y);

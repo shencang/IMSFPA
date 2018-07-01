@@ -62,6 +62,7 @@ public class DeleAR extends JFrame implements ActionListener {
     public void start(String name) {
 
         DeleAR update = new DeleAR();
+        update.setIconImage(Toolkit.getDefaultToolkit().getImage("src\\Res\\Img\\logo.png"));
         update.setTitle(GetString.messageTitle);
         update.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         update.setLocation(LOCATION_X, LOCATION_Y);

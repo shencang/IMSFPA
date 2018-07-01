@@ -66,6 +66,7 @@ public class Register extends JFrame implements ActionListener {
 
     public void registerStart() {
         Register regis = new Register();
+        regis.setIconImage(Toolkit.getDefaultToolkit().getImage("src\\Res\\Img\\logo.png"));
         regis.setTitle(GetString.registerTitle);
         regis.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         regis.setLocation(LOCATION_X, LOCATION_Y);

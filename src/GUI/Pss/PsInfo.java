@@ -1,18 +1,17 @@
 package GUI.Pss;
 
 
+import Datebase.SQLserver;
+import GUI.Login.MyLineBorder;
+import Res.Values.GetString;
 
-        import Datebase.SQLserver;
-        import GUI.Login.MyLineBorder;
-        import Res.Values.GetString;
-
-        import javax.swing.*;
-        import javax.swing.table.JTableHeader;
-        import java.awt.*;
-        import java.awt.event.ActionEvent;
-        import java.awt.event.ActionListener;
-        import java.awt.event.MouseAdapter;
-        import java.awt.event.MouseEvent;
+import javax.swing.*;
+import javax.swing.table.JTableHeader;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class PsInfo extends JFrame implements ActionListener {
 
@@ -69,6 +68,7 @@ public class PsInfo extends JFrame implements ActionListener {
     public  void  start(String username){
 
         PsInfo find = new PsInfo();
+        find.setIconImage(Toolkit.getDefaultToolkit().getImage("src\\Res\\Img\\logo.png"));
         find.setTitle(GetString.messageTitle);
         find.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         find.setLocation(LOCATION_X, LOCATION_Y);
