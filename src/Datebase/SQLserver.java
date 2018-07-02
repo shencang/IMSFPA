@@ -648,7 +648,8 @@ public class SQLserver {
 
     public static   Object[][] adoPsInfo(String username){
 
-        Object[][] data= null;
+        Object[][] data = null;
+        Object[][] dataNull = new Object[0][6];
         Connection conLoginAP= null;
         ResultSet reLoginAP =null;
         PreparedStatement psLoginAP = null;
@@ -668,7 +669,7 @@ public class SQLserver {
                 count++;
             }
             System.out.println("计算器:"+count);
-            String[] psnum=new String[count];
+            String[] psnum = new String[count + 1];
             reLoginAP = psLoginAP.executeQuery();
             count = 0;
             while (reLoginAP.next()) {
@@ -676,10 +677,11 @@ public class SQLserver {
 
                 count++;
             }
-            System.out.println(psnum[0]);
+            //  System.out.println(psnum[0]);
             if (psnum[0]==null){
                 JOptionPane.showMessageDialog(null,"没有找到该店员的所属信息，请重新检查输入！","错误",JOptionPane.ERROR_MESSAGE);
 
+                return dataNull;
             }else {
 
                 String sql2 = "select EmploymentRel.PSnum,PSname,EmploymentRel.PSSnum,PSSnume,PSStel,ERdate  from EmploymentRel,PetShop,PetShopStaff where EmploymentRel.PSnum= PetShop.PSnum and  EmploymentRel.PSSnum=PetShopStaff.PSSnum AND EmploymentRel.PSnum=?";
@@ -720,6 +722,7 @@ public class SQLserver {
     }
     public static   Object[][] PetPsInfo(String username){
 
+        Object[][] dataNull = new Object[0][6];
         Object[][] data= null;
         Connection conLoginAP= null;
         ResultSet reLoginAP =null;
@@ -740,7 +743,7 @@ public class SQLserver {
                 count++;
             }
             System.out.println("计算器:"+count);
-            String[] psnum=new String[count];
+            String[] psnum = new String[count + 1];
             reLoginAP = psLoginAP.executeQuery();
             count = 0;
             while (reLoginAP.next()) {
@@ -750,8 +753,9 @@ public class SQLserver {
             }
             System.out.println(psnum[0]);
             if (psnum[0]==null){
-                JOptionPane.showMessageDialog(null,"没有找到该店员的所属信息，请重新检查输入！","错误",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "没有找到该宠物的所属信息，请重新检查输入！", "错误", JOptionPane.ERROR_MESSAGE);
 
+                return dataNull;
             }else {
 
                 String sql2 = "select CommodityRel.Pnum,Pname,CommodityRel.PSnum,PSname,Ptype,CRdate from Pet,CommodityRel,PetShop where CommodityRel.Pnum= Pet.Pnum and CommodityRel.PSnum = PetShop.PSnum and CommodityRel.PSnum = ?";

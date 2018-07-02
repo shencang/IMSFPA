@@ -20,7 +20,7 @@ public class PetAdoApproval extends JFrame implements ActionListener {
     public int LOCATION_Y = 200;
     JTable jTablePet , jTablePet2;;
     JTableHeader jTableHeader,jTableHeader2;
-    JScrollPane  jScrollPanedatasave;
+    JScrollPane jScrollPanedatasave, jScrollPanedatasave2;
     JButton jButtontrueAndBack,jButtonSaveAndRefresh;
     JLabel jLabelPnum,jLabelTips;
     JTextField setPnum;
@@ -82,7 +82,10 @@ public class PetAdoApproval extends JFrame implements ActionListener {
 
         jTablePet = new JTable();
         jScrollPanedatasave = new JScrollPane();
-        jScrollPanedatasave.setBounds(0,0,1200,500);
+        jScrollPanedatasave.setBounds(0, 0, 600, 500);
+
+        jScrollPanedatasave2 = new JScrollPane();
+        jScrollPanedatasave2.setBounds(0, 605, 605, 500);
 
         jTablePet2 = new JTable();
 
