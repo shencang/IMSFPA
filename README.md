@@ -1,5 +1,5 @@
-# IMSFPA
-###### 宠物领养管理系统（Information management system for pet adoption）   --数据库课程设计
+# IMSFPA -宠物领养管理系统
+######  -宠物领养管理系统（Information management system for pet adoption）   --数据库课程设计
 
 ### IDE: idea2018
 ### 数据库：SQLserver2017
